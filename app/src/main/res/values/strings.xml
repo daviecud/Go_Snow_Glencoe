@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GoSnow_Glencoe</string>
+    <string name="heading">Go Snow Glencoe</string>
+    <string name="welcome">In the heart of the beautiful Scottish Highlands, Glencoe Mountain
+                        resort is a place to have lots of fun during the snowy season</string>
 </resources>

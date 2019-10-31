@@ -4,15 +4,164 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/accomodationImageView"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="image of accomodation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/food_drinkImageView"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@android:drawable/picture_frame" />
+
+    <ImageView
+        android:id="@+id/food_drinkImageView"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="image of food and drink"
+        app:layout_constraintStart_toEndOf="@+id/sledgeImageView"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@android:drawable/picture_frame" />
+
+    <ImageView
+        android:id="@+id/sledgeImageView"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="image of sledger"
+        app:layout_constraintStart_toEndOf="@+id/skiImageView"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@drawable/sledge" />
+
+    <ImageView
+        android:id="@+id/skiImageView"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="image of skier"
+        app:layout_constraintStart_toEndOf="@+id/snowboardImageView"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@drawable/skier" />
+
     <TextView
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="casual"
+        android:text="@string/heading"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/ice"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="5dp"
+        android:text="@string/welcome"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+    <ImageView
+        android:id="@+id/snowboardImageView"
+        android:layout_width="78dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="image of snowboarder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@drawable/snowboard" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/snowConditionsCardView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sledgeImageView"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="15dp"
+        >
+
+        <TextView
+            android:id="@+id/depthHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="5dp"
+            android:text="Depth(inches)" />
+
+        <TextView
+            android:id="@+id/bottomMountainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="65dp"
+            android:text="Bottom Mountain:" />
+
+        <TextView
+            android:id="@+id/midMountainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="45dp"
+            android:text="Mid Mountain:" />
+
+        <ImageView
+            android:id="@+id/weatherImage"
+            android:layout_width="169dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="image of snowboarder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+            app:srcCompat="@android:drawable/picture_frame" />
+
+        <TextView
+            android:id="@+id/currentWeatherText"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="100dp"
+            android:text="Current Weather" />
+
+        <TextView
+            android:id="@+id/topMountainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="25dp"
+            android:text="Top Mountain:" />
+    </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="471dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
