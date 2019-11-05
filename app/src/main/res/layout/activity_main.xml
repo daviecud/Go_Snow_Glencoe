@@ -87,20 +87,81 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/snowConditionsCardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="230dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sledgeImageView"
         app:cardCornerRadius="5dp"
         app:cardElevation="15dp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sledgeImageView">
+
+        <TextView
+            android:id="@+id/windSpeedJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="195dp" />
+
+        <TextView
+            android:id="@+id/lastSnowHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="105dp"
+            android:text="Last Snowfall:" />
+
+        <TextView
+            android:id="@+id/newSnowJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="85dp"
+            android:text=" " />
+
+        <TextView
+            android:id="@+id/lastSnowJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="105dp" />
+
+        <TextView
+            android:id="@+id/newSnowHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="85dp"
+            android:text="New Snow:" />
+
+        <TextView
+            android:id="@+id/baseMountJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="65dp"
+            android:text=" " />
+
+        <TextView
+            android:id="@+id/midMountJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="45dp"
+            android:text=" " />
+
+        <TextView
+            android:id="@+id/topMountJson"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="25dp"
+            android:text=" " />
 
         <TextView
             android:id="@+id/depthHeading"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="310dp"
             android:layout_marginTop="5dp"
@@ -125,7 +186,7 @@
         <ImageView
             android:id="@+id/weatherImage"
             android:layout_width="169dp"
-            android:layout_height="89dp"
+            android:layout_height="119dp"
             android:layout_marginTop="8dp"
             android:contentDescription="image of snowboarder"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,9 +196,9 @@
         <TextView
             android:id="@+id/currentWeatherText"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="59dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="135dp"
             android:text="Current Weather" />
 
         <TextView
@@ -148,20 +209,5 @@
             android:layout_marginTop="25dp"
             android:text="Top Mountain:" />
     </androidx.cardview.widget.CardView>
-
-    <HorizontalScrollView
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="471dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
-    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
