@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="ice">#FFA2FAF0</color>
     <color name="background">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>

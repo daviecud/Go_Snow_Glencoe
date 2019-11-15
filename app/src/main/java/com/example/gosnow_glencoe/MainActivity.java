@@ -3,6 +3,7 @@ package com.example.gosnow_glencoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,23 +18,28 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView topMount, midMount, baseMount, current_condition, last_snowfall, new_snow_cm, wndspd;
+    ImageView snow_report, snow_sports, snow_chat, resort_info, local_business, google_directions;
+    TextView topDepth, accessDepth, current_condition, temperature;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        topMount = findViewById(R.id.topMountJson);
-        midMount = findViewById(R.id.midMountJson);
-        baseMount = findViewById(R.id.baseMountJson);
-        current_condition = findViewById(R.id.currentWeatherText);
-        new_snow_cm = findViewById(R.id.newSnowJson);
-        last_snowfall = findViewById(R.id.lastSnowJson);
-        wndspd = findViewById(R.id.windSpeedJson);
+        temperature = findViewById(R.id.tempJson);
+        current_condition = findViewById(R.id.currentConditionJson);
+        topDepth = findViewById(R.id.topDepthJson);
+        accessDepth = findViewById(R.id.accessDepthJson);
+        snow_report = findViewById(R.id.snowImage);
+        snow_sports = findViewById(R.id.sportImage);
+        snow_chat = findViewById(R.id.chatImage);
+        resort_info = findViewById(R.id.resortImage);
+        local_business = findViewById(R.id.localImage);
+        google_directions = findViewById(R.id.directionsImage);
 
         getSnow();
-        getResortForecastInfo();
+        getWeatherConditions();
     }
 
     protected void getSnow() {
@@ -42,22 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     String upper = response.getString("uppersnow_cm");
                     String lower = response.getString("lowersnow_cm");
-                    String new_snow = response.getString("newsnow_cm");
-                    String last_snow = response.getString("lastsnow");
                     String conditions = response.getString("conditions");
-                    String name = response.getString("resortname");
 
-                    topMount.setText(upper);
-                    baseMount.setText(lower);
+
+                    topDepth.setText(upper);
+                    accessDepth.setText(lower);
                     current_condition.setText(conditions);
-                    new_snow_cm.setText(new_snow);
-                    last_snowfall.setText(last_snow);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -74,17 +75,26 @@ public class MainActivity extends AppCompatActivity {
         queue.add(snow);
     }
 
-    protected void getResortForecastInfo(){
-        //String url = "https://api.darksky.net/forecast/27a87fa552b2a741f881b3ee639b994a/56.6325,-4.8279";
-        String url = "https://api.weatherunlocked.com/api/resortforecast/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
+    protected void getWeatherConditions() {
+        String url = "https://api.darksky.net/forecast/27a87fa552b2a741f881b3ee639b994a/56.6325,-4.8279";
 
         JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String windSpeed = response.getString("resort.forecast.timeframe.base.windspd_mph");
+                    JSONObject jsonResponse = response.getJSONObject("currently");
+                    String temp = jsonResponse.getDouble("temperature") + "°C";
+                    String summary = jsonResponse.getString("summary");
 
-                    wndspd.setText(windSpeed);
+                    temperature.setText(temp);
+                    current_condition.setText(summary);
+
+                    double temp_int = Double.parseDouble(temp); //sets the string value from api to a double variable
+                    double centi = (temp_int - 32) / 1.8000; //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
+                    centi = Math.round(centi); //Will take value from centi variable and use Math library round method to round to nearest whole number
+                    int i = (int)centi; //will set i to an integer of value returned from centi variable
+                    temperature.setText(String.valueOf(i));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -97,8 +107,31 @@ public class MainActivity extends AppCompatActivity {
         });
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(weather);
-    };
+    }
 
+//    protected void getResortForecastInfo(){
+//        String url = "https://api.weatherunlocked.com/api/resortforecast/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
+//
+//        JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//
+//
+//                try {
+//                    String windSpeed = response.getString("resort.forecast.timeframe.base.windspd_mph");
+//
+//                    wndspd.setText(windSpeed);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//    }
 }
 
 

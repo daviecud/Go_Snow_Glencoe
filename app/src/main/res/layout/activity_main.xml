@@ -4,54 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/accomodationImageView"
-        android:layout_width="78dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="image of accomodation"
+    <TextView
+        android:id="@+id/accessSnowHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Access Snow Depth:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/food_drinkImageView"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-        app:srcCompat="@android:drawable/picture_frame" />
+        app:layout_constraintStart_toEndOf="@+id/topSnowHeading"
+        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
 
-    <ImageView
-        android:id="@+id/food_drinkImageView"
-        android:layout_width="78dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="image of food and drink"
-        app:layout_constraintStart_toEndOf="@+id/sledgeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-        app:srcCompat="@android:drawable/picture_frame" />
+    <TextView
+        android:id="@+id/accessDepthJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="access Depth(cm)"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toEndOf="@+id/topDepthJson"
+        app:layout_constraintTop_toBottomOf="@+id/accessSnowHeading" />
 
-    <ImageView
-        android:id="@+id/sledgeImageView"
-        android:layout_width="78dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="image of sledger"
-        app:layout_constraintStart_toEndOf="@+id/skiImageView"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-        app:srcCompat="@drawable/sledge" />
-
-    <ImageView
-        android:id="@+id/skiImageView"
-        android:layout_width="78dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="image of skier"
-        app:layout_constraintStart_toEndOf="@+id/snowboardImageView"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-        app:srcCompat="@drawable/skier" />
+    <TextView
+        android:id="@+id/topSnowHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Snow Depth:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="226dp"
+        android:layout_height="47dp"
         android:fontFamily="casual"
         android:text="@string/heading"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -62,152 +52,312 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/welcomeText"
+        android:id="@+id/countryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:padding="5dp"
-        android:text="@string/welcome"
-        android:textSize="25sp"
+        android:text="@string/country"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading" />
 
-    <ImageView
-        android:id="@+id/snowboardImageView"
-        android:layout_width="78dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="image of snowboarder"
+    <TextView
+        android:id="@+id/tempJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:gravity="center"
+        android:text="-1°C"
+        android:textColor="@color/white"
+        android:textSize="90sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-        app:srcCompat="@drawable/snowboard" />
+        app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/snowConditionsCardView"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginRight="8dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="15dp"
+    <TextView
+        android:id="@+id/currentConditionJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="current conditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sledgeImageView">
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
-        <TextView
-            android:id="@+id/windSpeedJson"
-            android:layout_width="100dp"
+    <TextView
+        android:id="@+id/topDepthJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:text="top Depth(cm)"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topSnowHeading" />
+
+    <LinearLayout
+        android:id="@+id/topClickImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toTopOf="@+id/space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topDepthJson"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/snowReportClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="195dp" />
+            android:layout_weight="1"
+            android:background="#3CF1EBF1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/lastSnowHeading"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/snowImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/blizzard"
+                android:tint="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snow"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/snowSportsClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="105dp"
-            android:text="Last Snowfall:" />
+            android:layout_weight="1"
+            android:background="#3CF1EBF1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/newSnowJson"
-            android:layout_width="100dp"
+            <ImageView
+                android:id="@+id/sportImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/skier"
+                android:tint="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snow"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sports"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/snpwChatClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="85dp"
-            android:text=" " />
+            android:layout_weight="1"
+            android:background="#3CF1EBF1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/lastSnowJson"
-            android:layout_width="100dp"
+            <ImageView
+                android:id="@+id/chatImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_chat_black_24dp"
+                android:tint="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snow"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomClickImageLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/bottomClickImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/resortClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="105dp" />
+            android:layout_weight="1"
+            android:background="#3CF1EBF1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/newSnowHeading"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/resortImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/glencoe"
+                android:tint="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resort"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info."
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/businessClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="85dp"
-            android:text="New Snow:" />
+            android:layout_weight="1"
+            android:background="#3CF1EBF1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/baseMountJson"
-            android:layout_width="100dp"
+            <ImageView
+                android:id="@+id/localImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/food_drink"
+                android:tint="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="65dp"
-            android:text=" " />
+             />
 
-        <TextView
-            android:id="@+id/midMountJson"
-            android:layout_width="100dp"
+        <LinearLayout
+            android:id="@+id/directionsClick"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="45dp"
-            android:text=" " />
+            android:layout_weight="1"
+            android:background="#27F1EBF1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/topMountJson"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="25dp"
-            android:text=" " />
+            <ImageView
+                android:id="@+id/directionsImage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/directions"
+                android:tint="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/depthHeading"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="5dp"
-            android:text="Depth(inches)" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
 
-        <TextView
-            android:id="@+id/bottomMountainHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="65dp"
-            android:text="Bottom Mountain:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google Maps"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/midMountainHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="45dp"
-            android:text="Mid Mountain:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Directions"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
 
-        <ImageView
-            android:id="@+id/weatherImage"
-            android:layout_width="169dp"
-            android:layout_height="119dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="image of snowboarder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcomeText"
-            app:srcCompat="@android:drawable/picture_frame" />
-
-        <TextView
-            android:id="@+id/currentWeatherText"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="135dp"
-            android:text="Current Weather" />
-
-        <TextView
-            android:id="@+id/topMountainHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="25dp"
-            android:text="Top Mountain:" />
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
