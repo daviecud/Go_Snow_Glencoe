@@ -5,4 +5,11 @@
                         resort is a place to have lots of fun during the snowy season</string>
 
     <string name="country">Scotland</string>
+    <string name="snow_report_click">You have clicked Snow Report</string>
+    <string name="snow_sports_clicked">You have clicked Snow Sports</string>
+    <string name="snow_chat_clicked">You have clicked Snow Chat</string>
+    <string name="resort_info_clicked">You have clicked Resort Information</string>
+    <string name="local_business_clicked">You have clicked Local Businesses</string>
+    <string name="directions_clicked">You have clicked Directions</string>
+
 </resources>

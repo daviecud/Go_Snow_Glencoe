@@ -17,21 +17,23 @@
         app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
 
     <TextView
-        android:id="@+id/accessDepthJson"
+        android:id="@+id/accessDepthHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
         android:text="access Depth(cm)"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
-        app:layout_constraintStart_toEndOf="@+id/topDepthJson"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/topDepthHeading"
         app:layout_constraintTop_toBottomOf="@+id/accessSnowHeading" />
 
     <TextView
         android:id="@+id/topSnowHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:text="Top Snow Depth:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.214"
@@ -81,17 +83,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="casual"
         android:text="current conditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
     <TextView
-        android:id="@+id/topDepthJson"
+        android:id="@+id/topDepthHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="casual"
         android:text="top Depth(cm)"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topDepthJson"
+        app:layout_constraintTop_toBottomOf="@+id/topDepthHeading"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
@@ -126,7 +130,10 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/blizzard"
-                android:tint="#FFFFFF" />
+                android:tint="#FFFFFF"
+                android:clickable="true"
+                android:onClick="goToSnowReport"
+                />
 
             <Space
                 android:layout_width="wrap_content"
@@ -135,6 +142,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Snow"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -143,6 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Report"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -168,7 +177,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/skier"
-                android:tint="#FFFFFF" />
+                android:tint="#FFFFFF"
+                android:clickable="true"
+                android:onClick="goToSnowSports"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -177,12 +188,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Snow"
                 android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Sports"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -199,7 +212,10 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:onClick="goToSnowChat"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/chatImage"
@@ -215,12 +231,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Snow"
                 android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Chat"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -252,7 +270,10 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:onClick="goToResortInfo"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/resortImage"
@@ -268,6 +289,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Resort"
                 android:textSize="12dp" />
 
@@ -275,6 +297,7 @@
                 android:id="@+id/pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Info."
                 android:textSize="14dp" />
         </LinearLayout>
@@ -291,7 +314,10 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:onClick="goToBusinesses"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/localImage"
@@ -307,6 +333,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Local"
                 android:textSize="12dp" />
 
@@ -314,6 +341,7 @@
                 android:id="@+id/humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Business"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -329,10 +357,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#27F1EBF1"
-            android:clickable="true"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:onClick="goToDirections"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/directionsImage"
@@ -348,12 +378,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Google Maps"
                 android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="Directions"
                 android:textSize="14dp" />
         </LinearLayout>

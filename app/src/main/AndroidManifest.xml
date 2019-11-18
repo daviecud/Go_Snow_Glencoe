@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SnowReportActivity"></activity>
+        <activity android:name=".DirectionsActivity"></activity>
+        <activity android:name=".BusinessActivity" />
+        <activity android:name=".ResortActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".SportActivity" />
+        <activity android:name=".SnowReportActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

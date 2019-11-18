@@ -2,9 +2,12 @@ package com.example.gosnow_glencoe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         temperature = findViewById(R.id.tempJson);
         current_condition = findViewById(R.id.currentConditionJson);
-        topDepth = findViewById(R.id.topDepthJson);
-        accessDepth = findViewById(R.id.accessDepthJson);
+        topDepth = findViewById(R.id.topDepthHeading);
+        accessDepth = findViewById(R.id.accessDepthHeading);
         snow_report = findViewById(R.id.snowImage);
         snow_sports = findViewById(R.id.sportImage);
         snow_chat = findViewById(R.id.chatImage);
@@ -44,17 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
     protected void getSnow() {
         String url = "https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
-//Try another snow report API
 
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String upper = response.getString("uppersnow_cm");
-                    String lower = response.getString("lowersnow_cm");
+                    String upper = response.getString("uppersnow_cm") + "cm";
+                    String lower = response.getString("lowersnow_cm") + "cm";
                     String conditions = response.getString("conditions");
-
 
                     topDepth.setText(upper);
                     accessDepth.setText(lower);
@@ -109,30 +110,50 @@ public class MainActivity extends AppCompatActivity {
         queue.add(weather);
     }
 
-//    protected void getResortForecastInfo(){
-//        String url = "https://api.weatherunlocked.com/api/resortforecast/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
-//
-//        JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//
-//
-//                try {
-//                    String windSpeed = response.getString("resort.forecast.timeframe.base.windspd_mph");
-//
-//                    wndspd.setText(windSpeed);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        });
-//    }
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+    //Add toast/snackbar message as user clicks choice
+    public void goToSnowReport(View view) {
+        //Shows a message that the snow report was clicked
+        displayToast(getString(R.string.snow_report_click));
+
+        Intent intent = new Intent(this, SnowReportActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSnowSports(View view) {
+        displayToast(getString(R.string.snow_sports_clicked));
+
+        Intent intent = new Intent(this, SportActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSnowChat(View view) {
+        displayToast(getString(R.string.snow_chat_clicked));
+
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToResortInfo(View view) {
+        displayToast(getString(R.string.resort_info_clicked));
+
+        Intent intent = new Intent(this, ResortActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToBusinesses(View view) {
+        displayToast(getString(R.string.local_business_clicked));
+
+        Intent intent = new Intent(this, BusinessActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToDirections(View view) {
+        displayToast(getString(R.string.directions_clicked));
+
+        Intent intent = new Intent(this, DirectionsActivity.class);
+        startActivity(intent);
+    }
 }
-
-
-
