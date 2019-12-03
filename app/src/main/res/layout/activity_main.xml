@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
@@ -12,6 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Access Snow Depth:"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topSnowHeading"
         app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
@@ -21,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="casual"
         android:text="access Depth(cm)"
+        android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toEndOf="@+id/topDepthHeading"
         app:layout_constraintTop_toBottomOf="@+id/accessSnowHeading" />
 
     <TextView
@@ -35,6 +39,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="Top Snow Depth:"
+        android:textSize="10sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +53,7 @@
         android:fontFamily="casual"
         android:text="@string/heading"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/ice"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,13 +74,13 @@
         android:id="@+id/tempJson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="76dp"
         android:gravity="center"
         android:text="-1°C"
         android:textColor="@color/white"
         android:textSize="90sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
 
@@ -85,6 +91,8 @@
         android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="current conditions"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tempJson" />
@@ -93,10 +101,11 @@
         android:id="@+id/topDepthHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="top Depth(cm)"
+        android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topSnowHeading" />
@@ -144,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Snow"
-                android:textColor="@color/white"
+                android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -153,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Report"
-                android:textColor="@color/white"
+                android:textColor="#673AB7"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -174,12 +183,12 @@
 
             <ImageView
                 android:id="@+id/sportImage"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/skier"
-                android:tint="#FFFFFF"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
                 android:clickable="true"
-                android:onClick="goToSnowSports"/>
+                android:onClick="goToSnowSports"
+                android:src="@drawable/skier"
+                android:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -190,6 +199,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Snow"
+                android:textColor="#673AB7"
                 android:textSize="12dp" />
 
             <TextView
@@ -197,6 +207,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Sports"
+                android:textColor="#673AB7"
                 android:textSize="14dp" />
         </LinearLayout>
 
@@ -277,7 +288,7 @@
 
             <ImageView
                 android:id="@+id/resortImage"
-                android:layout_width="25dp"
+                android:layout_width="35dp"
                 android:layout_height="25dp"
                 android:src="@drawable/glencoe"
                 android:tint="#FFFFFF" />

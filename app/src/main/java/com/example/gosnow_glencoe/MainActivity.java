@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getSnow() {
-        String url = "https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
-
+        String url = "https://api.weatherunlocked.com/api/snowreport/1398?
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -77,18 +76,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getWeatherConditions() {
-        String url = "https://api.darksky.net/forecast/27a87fa552b2a741f881b3ee639b994a/56.6325,-4.8279";
+        String url = "https://api.darksky.net/forecast//56.6325,-4.8279";
 
         JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject jsonResponse = response.getJSONObject("currently");
-                    String temp = jsonResponse.getDouble("temperature") + "°C";
+                    String temp = String.valueOf(jsonResponse.getDouble("temperature"));
                     String summary = jsonResponse.getString("summary");
 
                     temperature.setText(temp);
                     current_condition.setText(summary);
+
 
                     double temp_int = Double.parseDouble(temp); //sets the string value from api to a double variable
                     double centi = (temp_int - 32) / 1.8000; //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     int i = (int)centi; //will set i to an integer of value returned from centi variable
                     temperature.setText(String.valueOf(i));
 
+                    //+ "°C"
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
