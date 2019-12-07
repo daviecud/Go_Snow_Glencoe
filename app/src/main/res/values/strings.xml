@@ -11,5 +11,9 @@
     <string name="resort_info_clicked">You have clicked Resort Information</string>
     <string name="local_business_clicked">You have clicked Local Businesses</string>
     <string name="directions_clicked">You have clicked Directions</string>
+    <string name="title_activity_snow_chat">SnowChatActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

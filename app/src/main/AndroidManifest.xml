@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DirectionsActivity"></activity>
+        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SnowChatActivity" />
+        <activity android:name=".DirectionsActivity" />
         <activity android:name=".BusinessActivity" />
         <activity android:name=".ResortActivity" />
-        <activity android:name=".ChatActivity" />
         <activity android:name=".SportActivity" />
         <activity android:name=".SnowReportActivity" />
         <activity android:name=".MainActivity">

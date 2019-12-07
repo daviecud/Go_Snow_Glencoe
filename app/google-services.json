@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "676173898382",
+    "firebase_url": "https://go-snow-glencoe.firebaseio.com",
+    "project_id": "go-snow-glencoe",
+    "storage_bucket": "go-snow-glencoe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676173898382:android:12d18e1ace84d0704bdfdf",
+        "android_client_info": {
+          "package_name": "com.example.gosnow_glencoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676173898382-45blvmbfbfogki8er6b09u80lb4htgib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gosnow_glencoe",
+            "certificate_hash": "ef99331c3f0376ff7aae87d9e2b0d50a60fdffcb"
+          }
+        },
+        {
+          "client_id": "676173898382-10rpuv0qs155gq6gabenbdl2eq37122k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn8B8VXJF09D2QSm5G-MYbzfnGkD_m-00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676173898382-10rpuv0qs155gq6gabenbdl2eq37122k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

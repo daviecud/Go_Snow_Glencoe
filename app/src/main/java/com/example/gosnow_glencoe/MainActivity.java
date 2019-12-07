@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView snow_report, snow_sports, snow_chat, resort_info, local_business, google_directions;
     TextView topDepth, accessDepth, current_condition, temperature;
 
+    //TODO set up AsyncTask for JSon requests, add degrees c sign to temp,
+    // move weather to above temp, sort the alignment of depths response, fix option boxes colours and make all contents clickable,
+    // set background to darker top gradient to ice bottom
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getSnow() {
-        String url = "https://api.weatherunlocked.com/api/snowreport/1398?
+        String url = "https://api.weatherunlocked.com/api/snowreport/1398?";
+
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -133,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToSnowChat(View view) {
         displayToast(getString(R.string.snow_chat_clicked));
 
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, SnowChatActivity.class);
         startActivity(intent);
     }
 

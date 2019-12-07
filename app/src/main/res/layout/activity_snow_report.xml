@@ -6,15 +6,160 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbars="vertical"
     tools:context=".SnowReportActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="400dp"
-        android:layout_height="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/wndGstJson"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="2dp"
+        android:text="windGstJson"
+        app:layout_constraintStart_toEndOf="@+id/windGstHeading"
+        app:layout_constraintTop_toBottomOf="@+id/wndSpdJson" />
+
+    <TextView
+        android:id="@+id/wndSpdJson"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="2dp"
+        android:text="windSpdJson"
+        app:layout_constraintStart_toEndOf="@+id/windSpdHeading"
+        app:layout_constraintTop_toBottomOf="@+id/wndDirJson" />
+
+    <TextView
+        android:id="@+id/wndDirJson"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="2dp"
+        android:text="windDirJson"
+        app:layout_constraintStart_toEndOf="@+id/windDirHeading"
+        app:layout_constraintTop_toBottomOf="@+id/feelLikeJson" />
+
+    <TextView
+        android:id="@+id/feelLikeJson"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="2dp"
+        android:text="feelLikeJson"
+        app:layout_constraintStart_toEndOf="@+id/feelLikeHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+
+    <TextView
+        android:id="@+id/tempJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="2dp"
+        android:text="tempJson"
+        app:layout_constraintStart_toEndOf="@+id/tempHeading"
+        app:layout_constraintTop_toBottomOf="@+id/fshSnowJson" />
+
+    <TextView
+        android:id="@+id/fshSnowJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="2dp"
+        android:text="freshSnowJson"
+        app:layout_constraintStart_toEndOf="@+id/freshSnowHeading"
+        app:layout_constraintTop_toBottomOf="@+id/weatherJson" />
+
+    <TextView
+        android:id="@+id/windGstHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Wind Gust:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/windSpdHeading" />
+
+    <TextView
+        android:id="@+id/windSpdHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Wind Speed:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/windDirHeading" />
+
+    <TextView
+        android:id="@+id/windDirHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Wind Direction:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feelLikeHeading" />
+
+    <TextView
+        android:id="@+id/feelLikeHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Feels Like:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempHeading" />
+
+    <TextView
+        android:id="@+id/tempHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:text="Temperature:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/freshSnowHeading" />
+
+    <TextView
+        android:id="@+id/freshSnowHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Fresh Snow:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherHeading" />
+
+    <TextView
+        android:id="@+id/resortConditionsHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="36dp"
+        android:text="Resort Conditions:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/snowReportHeading" />
+
+    <TextView
+        android:id="@+id/lastSnowJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:text="lstSnJson"
+        app:layout_constraintStart_toEndOf="@+id/last_snow"
+        app:layout_constraintTop_toBottomOf="@+id/reportDateJson" />
+
+    <TextView
+        android:id="@+id/last_snow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:text="Last Snow:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reportDateHeading" />
 
     <TextView
         android:id="@+id/snowReportHeading"
@@ -30,11 +175,13 @@
         android:id="@+id/resortConditionsJson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="36dp"
         android:text="resort condtions"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toEndOf="@+id/resortConditionsHeading"
         app:layout_constraintTop_toBottomOf="@+id/snowReportHeading" />
 
     <TextView
@@ -84,9 +231,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
-        android:text="Percentage Open: "
-        app:layout_constraintEnd_toStartOf="@+id/percentOpenJson"
+        android:text="% Open: "
+        app:layout_constraintStart_toStartOf="@+id/visibilityHeading"
         app:layout_constraintTop_toBottomOf="@+id/visibilityHeading" />
 
     <TextView
@@ -95,7 +241,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="28dp"
-        android:text="snowfall json"
+        android:text="snfall json"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rainFallingJson" />
 
@@ -104,9 +250,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
         android:text="Visibility: "
-        app:layout_constraintEnd_toStartOf="@+id/percentOpenJson"
+        app:layout_constraintStart_toStartOf="@+id/snowFallingHeading"
         app:layout_constraintTop_toBottomOf="@+id/snowFallingHeading" />
 
     <TextView
@@ -134,9 +279,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
         android:text="Rain Falling: "
-        app:layout_constraintEnd_toStartOf="@+id/rainFallingJson"
+        app:layout_constraintStart_toStartOf="@+id/freezeHeading"
         app:layout_constraintTop_toBottomOf="@+id/freezeHeading" />
 
     <TextView
@@ -144,9 +288,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
         android:text="Snow Falling: "
-        app:layout_constraintEnd_toStartOf="@+id/visibiltyJson"
+        app:layout_constraintStart_toStartOf="@+id/rainHeading"
         app:layout_constraintTop_toBottomOf="@+id/rainHeading" />
 
     <TextView
@@ -250,11 +393,10 @@
 
     <ProgressBar
         android:id="@+id/loader"
-        android:layout_width="74dp"
-        android:layout_height="68dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="411dp"
-        android:layout_marginTop="731dp"
         android:layout_marginEnd="411dp"
         android:layout_marginBottom="731dp"
         android:visibility="gone"
@@ -278,6 +420,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/BaseHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="339dp"
+        android:fontFamily="casual"
+        android:text="Base @ 1200ft/366m"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="376dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="19dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastSnowJson" />
+
+    <TextView
+        android:id="@+id/weatherHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="13dp"
+        android:text="Weather:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BaseHeading" />
+
+    <TextView
+        android:id="@+id/weatherJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="13dp"
+        android:text="weatherJson"
+        app:layout_constraintStart_toEndOf="@+id/weatherHeading"
+        app:layout_constraintTop_toBottomOf="@+id/BaseHeading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
