@@ -6,107 +6,148 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
-    Button sign_in;
-    private FirebaseAuth mAuth;
-    private static final int RC_SIGN_IN = 123;
+    private EditText input_username, input_email, input_password;
+    private FirebaseAuth auth;
+    private static final String TAG = "EmailPassword";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        mAuth = FirebaseAuth.getInstance();
+        //Initialize FirebaseAuth
+        auth = FirebaseAuth.getInstance();
 
-        Button sign_in_button = (Button) findViewById(R.id.sign_in);
-        sign_in_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        //Views
+        input_username = findViewById(R.id.username);
+        input_email = findViewById(R.id.email);
+        input_password = findViewById(R.id.password);
 
-            }
-        });
+        //Buttons
+        findViewById(R.id.sign_in_btn).setOnClickListener(this);
+        findViewById(R.id.register_btn).setOnClickListener(this);
+        findViewById(R.id.reset_pwd_btn).setOnClickListener(this);
+        findViewById(R.id.verify_email_btn).setOnClickListener(this);
+
     }
 
-    public void createSignInIntent() {
-
-        //Authentication providers
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build()
-        );
-
-        //Create and launch sign-in intent
-        startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(), RC_SIGN_IN);
-    }
-
-    //Start of auth_fui_create_intent
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
-
-            if (resultCode == Activity.RESULT_OK) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Intent intent = new Intent(this, SnowChatActivity.class);
-                startActivity(intent);
-
-                //Put in a snackbar or toast that displays setting up your account
-
-            } else if (resultCode == Activity.RESULT_CANCELED){
-                if (response == null) {
-                    return;
-                }
-                //display message to let user know sign in has failed
-            }
-        }
-    }
-    //End of auth_fui_result
-
-    public void signOut() {
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });
-    }
-
-    public void delete() {
-        AuthUI.getInstance()
-                .delete(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });
-    }
-
+    //On Activity start check user
     @Override
     public void onStart() {
         super.onStart();
 
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+    }
+
+    private void signIn(String email, String password) {
+        Log.d(TAG, "signIn:" + email);
+        if (!validateForm()) {
+            return;
+        }
+//        showProgressDialog();
+
+        //Start sign in with email
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            //Sign in successfully will take user to SnowChatActivity, and display welcome message
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = auth.getCurrentUser();
+                            Intent intent = new Intent(SignInActivity.this, SnowChatActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(SignInActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Sign in unsuccessful, display message to the user
+                            Log.d(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(SignInActivity.this, "Authentication Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                        //hideProgressDialog();
+                    });
+    }
+
+    private void goToCreateAccount(){
+        Intent intent = new Intent(this, Sign_UpActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.sign_in_btn) {
+            signIn(input_email.getText().toString(), input_password.getText().toString());
+        } else if (i == R.id.sign_out_btn) {
+            signOut();
+        } else if (i == R.id.register_btn) {
+            goToCreateAccount();
+        } else if (i == R.id.reset_pwd_btn) {
+
+        }
+    }
+
+    private void signOut() {
+        auth.signOut();
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = input_email.getText().toString();
+        //Check email field is not empty
+        if (TextUtils.isEmpty(email)) {
+            input_email.setError("Required");
+            valid = false;
+        } else {
+            input_email.setError(null);
+        }
+        //Check if email contains @ in the email address
+        if (!email.contains("@")) {
+            input_email.setError("@ required");
+            valid = false;
+        }
+
+        String password = input_password.getText().toString();
+        //Check password field is not empty
+        if (TextUtils.isEmpty(password)) {
+            input_password.setError("Required");
+            valid = false;
+        } else {
+            input_password.setError(null);
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(),
+                    "Password too short, enter minimum 6 characters!!",
+                    Toast.LENGTH_SHORT).show();
+            valid = false;
+        }
+        return valid;
     }
 }

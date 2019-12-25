@@ -10,6 +10,32 @@
     android:scrollbars="vertical"
     tools:context=".SnowReportActivity">
 
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakesNum="250"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAngleMax="5"
+        app:snowflakeSizeMin="8dp"
+        app:snowflakeSizeMax="42dp"
+        app:snowflakeSpeedMin="4"
+        app:snowflakeSpeedMax="12"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesAlreadyFalling="false"
+        app:snowflakeImage="@drawable/snowflake"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/heavysnow"
+        app:layout_constraintEnd_toStartOf="@+id/visibilityHeading"
+        app:layout_constraintStart_toEndOf="@+id/newSnowJson"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+         />
+
     <TextView
         android:id="@+id/wndGstJson"
         android:layout_width="wrap_content"
@@ -326,8 +352,7 @@
         android:id="@+id/reportTimeJson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="16dp"
         android:text="rptTJson"
         app:layout_constraintStart_toEndOf="@+id/reportTimeHeading"
         app:layout_constraintTop_toBottomOf="@+id/newSnowJson" />
@@ -465,6 +490,19 @@
         android:text="weatherJson"
         app:layout_constraintStart_toEndOf="@+id/weatherHeading"
         app:layout_constraintTop_toBottomOf="@+id/BaseHeading" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="31dp"
+        app:layout_constraintEnd_toStartOf="@+id/rainHeading"
+        app:layout_constraintStart_toEndOf="@+id/accessDepthJson"
+        app:layout_constraintTop_toBottomOf="@+id/resortConditionsJson"
+        app:srcCompat="@drawable/blizzard" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

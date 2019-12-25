@@ -15,5 +15,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="auth_failed">Authentication Failed</string>
+
 
 </resources>

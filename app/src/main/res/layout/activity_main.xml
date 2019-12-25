@@ -5,110 +5,120 @@
     android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/snowy_mountain4"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="casual"
+        android:text="Go Snow Glencoe"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <pl.droidsonroids.gif.GifImageView
+
+        android:id="@+id/gifImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/saltire2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toEndOf="@+id/heading"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/accessSnowHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Access Snow Depth:"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="casual"
+        android:text="Base Snow Depth:"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/topSnowHeading"
-        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
+        app:layout_constraintStart_toEndOf="@+id/topDepthHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
     <TextView
         android:id="@+id/accessDepthHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="99dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="casual"
         android:text="access Depth(cm)"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accessSnowHeading" />
+        app:layout_constraintStart_toEndOf="@+id/accessSnowHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
     <TextView
         android:id="@+id/topSnowHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="Top Snow Depth:"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintEnd_toStartOf="@+id/topDepthHeading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
-
-    <TextView
-        android:id="@+id/heading"
-        android:layout_width="226dp"
-        android:layout_height="47dp"
-        android:fontFamily="casual"
-        android:text="@string/heading"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/countryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/country"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heading" />
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
     <TextView
         android:id="@+id/tempJson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:gravity="center"
+        android:layout_width="167dp"
+        android:layout_height="113dp"
+        android:fontFamily="casual"
         android:text="-1°C"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="90sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
 
     <TextView
         android:id="@+id/currentConditionJson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="casual"
         android:text="current conditions"
         android:textAlignment="center"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tempJson"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView" />
 
     <TextView
         android:id="@+id/topDepthHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="99dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="2dp"
         android:fontFamily="casual"
         android:text="top Depth(cm)"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topSnowHeading" />
+        app:layout_constraintStart_toEndOf="@+id/topSnowHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
 
     <LinearLayout
         android:id="@+id/topClickImageLayout"
@@ -133,14 +143,15 @@
             android:onClick="goToSnowReport"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="4dp"
             android:focusable="true">
 
             <ImageView
                 android:id="@+id/snowImage"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/blizzard"
+                android:gravity="center"
                 android:tint="#FFFFFF"
                 android:clickable="true"
                 android:onClick="goToSnowReport"
@@ -181,12 +192,12 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="4dp">
 
             <ImageView
                 android:id="@+id/sportImage"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:clickable="true"
                 android:onClick="goToSnowSports"
                 android:src="@drawable/skier"
@@ -202,7 +213,8 @@
                 android:fontFamily="casual"
                 android:text="Snow"
                 android:textColor="#673AB7"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -210,7 +222,8 @@
                 android:fontFamily="casual"
                 android:text="Sports"
                 android:textColor="#673AB7"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <Space
@@ -225,16 +238,16 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="4dp"
             android:clickable="true"
             android:onClick="goToSnowChat"
             android:focusable="true">
 
             <ImageView
                 android:id="@+id/chatImage"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_chat_black_24dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_chat_black_24dp"
                 android:tint="#FFFFFF" />
 
             <Space
@@ -246,14 +259,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Snow"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Chat"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -271,6 +286,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -283,15 +299,15 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="4dp"
             android:clickable="true"
             android:onClick="goToResortInfo"
             android:focusable="true">
 
             <ImageView
                 android:id="@+id/resortImage"
-                android:layout_width="35dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/glencoe"
                 android:tint="#FFFFFF" />
 
@@ -304,7 +320,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Resort"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/pressure"
@@ -312,7 +329,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Info."
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <Space
@@ -327,16 +345,16 @@
             android:background="#3CF1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="4dp"
             android:clickable="true"
             android:onClick="goToBusinesses"
             android:focusable="true">
 
             <ImageView
                 android:id="@+id/localImage"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/food_drink"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/food_drink"
                 android:tint="#FFFFFF" />
 
             <Space
@@ -348,7 +366,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Local"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/humidity"
@@ -356,7 +375,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Business"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <Space
@@ -372,16 +392,16 @@
             android:background="#27F1EBF1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
+            android:padding="4dp"
             android:clickable="true"
             android:onClick="goToDirections"
             android:focusable="true">
 
             <ImageView
                 android:id="@+id/directionsImage"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/directions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/directions"
                 android:tint="#FFFFFF" />
 
             <Space
@@ -393,14 +413,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Google Maps"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Directions"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 

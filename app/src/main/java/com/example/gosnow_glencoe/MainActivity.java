@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getSnow() {
-        String url = "https://api.weatherunlocked.com/api/snowreport/1398?";
+        String url = "https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
 
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getWeatherConditions() {
-        String url = "https://api.darksky.net/forecast//56.6325,-4.8279";
+        String url = "https://api.darksky.net/forecast/27a87fa552b2a741f881b3ee639b994a/56.6325,-4.8279";
 
         JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToSnowChat(View view) {
         displayToast(getString(R.string.snow_chat_clicked));
 
-        Intent intent = new Intent(this, SnowChatActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
 
