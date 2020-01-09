@@ -65,7 +65,7 @@ public class SnowReportActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... args) {
 
-            String url = HttpRequest.executeGet( "https://api.weatherunlocked.com/api/resortforecast/1398?num_of_days=1&hourly_interval=6&app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3" );
+            String url = HttpRequest.executeGet( "https://api.weatherunlocked.com/api/resortforecast/1398?num_of_days=1&hourly_interval=6&" );
             return url;
         }
 
@@ -178,7 +178,7 @@ public class SnowReportActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... args) {
-            String snowUrl = HttpRequest.executeGet("https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3");
+            String snowUrl = HttpRequest.executeGet("https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&");
             return snowUrl;
         }
 

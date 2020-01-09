@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         temperature = findViewById(R.id.tempJson);
-        current_condition = findViewById(R.id.currentConditionJson);
+       // current_condition = findViewById(R.id.currentConditionJson);
         topDepth = findViewById(R.id.topDepthHeading);
         accessDepth = findViewById(R.id.accessDepthHeading);
         snow_report = findViewById(R.id.snowImage);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getSnow() {
-        String url = "https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3";
+        String url = "https://api.weatherunlocked.com/api/snowreport/1398?";
 
         JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String upper = response.getString("uppersnow_cm") + "cm";
                     String lower = response.getString("lowersnow_cm") + "cm";
-                    String conditions = response.getString("conditions");
+                    //String conditions = response.getString("conditions");
 
                     topDepth.setText(upper);
                     accessDepth.setText(lower);
-                    current_condition.setText(conditions);
+                    //current_condition.setText(conditions);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     String summary = jsonResponse.getString("summary");
 
                     temperature.setText(temp);
-                    current_condition.setText(summary);
+                    //current_condition.setText(summary);
 
 
                     double temp_int = Double.parseDouble(temp); //sets the string value from api to a double variable

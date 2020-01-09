@@ -56,18 +56,28 @@
         app:layout_constraintVertical_bias="0.585">
 
         <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Username"
+            />
+
+        <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Email" />
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Password" />
+            android:hint="Password"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/create_acc_btn"
@@ -103,14 +113,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/verify_email_btn"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="@color/white"
-            android:text="Verify Email"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

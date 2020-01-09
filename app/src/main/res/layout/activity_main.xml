@@ -20,7 +20,6 @@
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,81 +28,66 @@
 
         android:id="@+id/gifImageView"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
         android:src="@drawable/saltire2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/heading"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/heading" />
 
     <TextView
         android:id="@+id/accessSnowHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="Base Snow Depth:"
         android:textAlignment="center"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toEndOf="@+id/topDepthHeading"
-        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+        app:layout_constraintTop_toBottomOf="@+id/tempJson"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/accessDepthHeading"
         android:layout_width="99dp"
         android:layout_height="36dp"
-        android:layout_marginStart="2dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="casual"
         android:text="access Depth(cm)"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/accessSnowHeading"
-        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+        app:layout_constraintTop_toBottomOf="@+id/accessSnowHeading" />
 
     <TextView
         android:id="@+id/topSnowHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="casual"
         android:text="Top Snow Depth:"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/topDepthHeading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+        app:layout_constraintTop_toBottomOf="@+id/tempJson"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/tempJson"
         android:layout_width="167dp"
-        android:layout_height="113dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="casual"
         android:text="-1°C"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="90sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentConditionJson" />
-
-    <TextView
-        android:id="@+id/currentConditionJson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="casual"
-        android:text="current conditions"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/tempJson"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gifImageView" />
@@ -112,13 +96,13 @@
         android:id="@+id/topDepthHeading"
         android:layout_width="99dp"
         android:layout_height="36dp"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="casual"
         android:text="top Depth(cm)"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/topSnowHeading"
-        app:layout_constraintTop_toBottomOf="@+id/tempJson" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topSnowHeading" />
 
     <LinearLayout
         android:id="@+id/topClickImageLayout"

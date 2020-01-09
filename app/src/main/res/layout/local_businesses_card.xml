@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bus_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginBottom="5sp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="15dp">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/bus_logo"
+                android:layout_width="117dp"
+                android:layout_height="135dp"
+                android:padding="4dp"
+                android:contentDescription="Business Logo"
+                />
+
+
+            <TextView
+                android:id="@+id/bus_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/bus_logo"
+                android:text="AGM Aerials"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <TextView
+                android:id="@+id/bus_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bus_name"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/bus_logo"
+                android:text="Lang Avenue, Renfrew, PA4 0ZZ"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/bus_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bus_address"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/bus_logo"
+                android:text="07666666666"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/bus_web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bus_tel"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/bus_logo"
+                android:text="www.agmaerials.co.uk"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/bus_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bus_web"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/bus_logo"
+                android:text="Services include Aerial/Satellite, CCTV, Alarms, TV mounting. Bespoke installations"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

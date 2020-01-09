@@ -11,7 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".GroupChatActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BaseActivity" />
         <activity android:name=".PasswordResetActivity" />
         <activity android:name=".Sign_UpActivity" />
         <activity android:name=".SignInActivity" />
@@ -21,13 +30,7 @@
         <activity android:name=".ResortActivity" />
         <activity android:name=".SportActivity" />
         <activity android:name=".SnowReportActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
