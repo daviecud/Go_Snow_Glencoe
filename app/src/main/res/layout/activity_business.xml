@@ -24,12 +24,21 @@
         tools:layout_editor_absoluteX="127dp"
         tools:layout_editor_absoluteY="221dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/localBus_RecycleView"
+    <ScrollView
+        android:id="@+id/business_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/local_bus_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/local_bus_heading">
 
-        />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/localBus_RecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

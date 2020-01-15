@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BusinessActivity extends AppCompatActivity {
@@ -62,6 +63,27 @@ public class BusinessActivity extends AppCompatActivity {
                 R.drawable.kingshouselogo
         ));
 
+        infoList.add(new BusinessDetails(
+                4,
+                "Ice Factor",
+                "Leven Road, Kinlochleven, PH50 4SF",
+                "01855 831 100",
+                "www.ice-factor.co.uk",
+                "Rock/Ice Climbing - Indoor Activities - Food & Drink",
+                R.drawable.ice_factor_logo
+        ));
+
+        infoList.add(new BusinessDetails(
+                5,
+                "The Loch Leven Hotel",
+                "Old Ferry Road, Ballachulish, PH33 6SA",
+                "01855 821 236",
+                "www.lochlevenhotel.co.uk",
+                "Accommodation - Loch View Restaurant - Shop",
+                R.drawable.lochleven_logo
+        ));
+
+        Collections.shuffle(infoList);
         adapter = new BusinessAdapter(this, infoList);
         recyclerView.setAdapter(adapter);
     }

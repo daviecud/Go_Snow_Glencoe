@@ -3,6 +3,7 @@ package com.example.gosnow_glencoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeFields();
+        new GetSnowDetailsTask().execute();
+        new GetWeatherInfoTask().execute();
+    }
+
+    private void initializeFields() {
         temperature = findViewById(R.id.tempJson);
-       // current_condition = findViewById(R.id.currentConditionJson);
+        // current_condition = findViewById(R.id.currentConditionJson);
         topDepth = findViewById(R.id.topDepthHeading);
         accessDepth = findViewById(R.id.accessDepthHeading);
         snow_report = findViewById(R.id.snowImage);
@@ -43,77 +50,133 @@ public class MainActivity extends AppCompatActivity {
         resort_info = findViewById(R.id.resortImage);
         local_business = findViewById(R.id.localImage);
         google_directions = findViewById(R.id.directionsImage);
-
-        getSnow();
-        getWeatherConditions();
     }
 
-    protected void getSnow() {
-        String url = "https://api.weatherunlocked.com/api/snowreport/1398?";
+    class GetSnowDetailsTask extends AsyncTask<String, Void, String> {
 
-        JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        @Override
+        protected String doInBackground(String... strings) {
+            return snowUrl;
+        }
 
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String upper = response.getString("uppersnow_cm") + "cm";
-                    String lower = response.getString("lowersnow_cm") + "cm";
-                    //String conditions = response.getString("conditions");
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
-                    topDepth.setText(upper);
-                    accessDepth.setText(lower);
-                    //current_condition.setText(conditions);
+            try {
+                JSONObject jObject = new JSONObject(s);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                String upper = jObject.getString("uppersnow_cm") + "cm";
+                String lower = jObject.getString("lowersnow_cm") + "cm";
+
+                topDepth.setText(upper);
+                accessDepth.setText(lower);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(snow);
+        }
     }
 
-    protected void getWeatherConditions() {
-        String url = "https://api.darksky.net/forecast/27a87fa552b2a741f881b3ee639b994a/56.6325,-4.8279";
+//    protected void getSnow() {
+//        String url = "3";
+//
+//        JsonObjectRequest snow = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    String upper = response.getString("uppersnow_cm") + "cm";
+//                    String lower = response.getString("lowersnow_cm") + "cm";
+//                    //String conditions = response.getString("conditions");
+//
+//                    topDepth.setText(upper);
+//                    accessDepth.setText(lower);
+//                    //current_condition.setText(conditions);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        queue.add(snow);
+//    }
 
-        JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject jsonResponse = response.getJSONObject("currently");
-                    String temp = String.valueOf(jsonResponse.getDouble("temperature"));
-                    String summary = jsonResponse.getString("summary");
 
-                    temperature.setText(temp);
-                    //current_condition.setText(summary);
+    class GetWeatherInfoTask extends AsyncTask<String, Void, String> {
 
 
-                    double temp_int = Double.parseDouble(temp); //sets the string value from api to a double variable
-                    double centi = (temp_int - 32) / 1.8000; //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
-                    centi = Math.round(centi); //Will take value from centi variable and use Math library round method to round to nearest whole number
-                    int i = (int)centi; //will set i to an integer of value returned from centi variable
-                    temperature.setText(String.valueOf(i));
+        @Override
+        protected String doInBackground(String... strings) {
+            return url;
 
-                    //+ "°C"
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject jObject = new JSONObject(s);
+
+                String temp = String.valueOf(jObject.getDouble("temperature") + "°C");
+                String summary = jObject.getString("summary");
+
+                temperature.setText(temp);
+                //current_condition.setText(summary);
+
+
+                double temp_int = Double.parseDouble(temp); //parse the string value from api to a double variable
+                double centi = (temp_int - 32) / 1.8000; //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
+                centi = Math.round(centi); //Will take value from centi variable and use Math library round method to round to nearest whole number
+                int i = (int)centi; //will set i to an integer of value returned from centi variable
+                temperature.setText(String.valueOf(i));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(weather);
+        }
     }
+//    protected void getWeatherConditions() {
+//
+//        JsonObjectRequest weather = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    JSONObject jsonResponse = response.getJSONObject("currently");
+//                    String temp = String.valueOf(jsonResponse.getDouble("temperature"));
+//                    String summary = jsonResponse.getString("summary");
+//
+//                    temperature.setText(temp);
+//                    //current_condition.setText(summary);
+//
+//
+//                    double temp_int = Double.parseDouble(temp); //sets the string value from api to a double variable
+//                    double centi = (temp_int - 32) / 1.8000; //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
+//                    centi = Math.round(centi); //Will take value from centi variable and use Math library round method to round to nearest whole number
+//                    int i = (int)centi; //will set i to an integer of value returned from centi variable
+//                    temperature.setText(String.valueOf(i));
+//
+//                    //+ "°C"
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        queue.add(weather);
+//    }
 
     public void displayToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();

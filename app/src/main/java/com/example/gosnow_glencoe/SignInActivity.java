@@ -1,14 +1,19 @@
 package com.example.gosnow_glencoe;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +38,7 @@ import java.util.List;
 
 public class SignInActivity extends BaseActivity {
 
+    private Toolbar toolbar;
     private EditText input_username, input_email, input_password;
     private TextView newAccountLink, forgotPasswordLink;
     private Button signInButton, phoneLoginButton;
@@ -53,6 +59,10 @@ public class SignInActivity extends BaseActivity {
 
         InitializeFields();
 
+        toolbar = findViewById(R.id.chat_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Sign In");
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +76,6 @@ public class SignInActivity extends BaseActivity {
                 goToCreateAccount();
             }
         });
-
     }
 
     private void InitializeFields() {
@@ -77,9 +86,18 @@ public class SignInActivity extends BaseActivity {
         newAccountLink = findViewById(R.id.new_acc_link);
         input_email = findViewById(R.id.email);
         input_password = findViewById(R.id.password);
-        input_username = findViewById(R.id.username);
+//        input_username = findViewById(R.id.username);
         loadingBar = new ProgressDialog(this);
+    }
 
+    //On Activity start check user
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (currentUser != null) {
+            SendUserToSnowChatActivity();
+        }
     }
 
     private void AllowUserToSignIn() {
@@ -123,20 +141,36 @@ public class SignInActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    //On Activity start check user
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        if (currentUser != null) {
-            SendUserToSnowChatActivity();
-        }
-    }
-
     private void goToCreateAccount(){
-        Intent intent = new Intent(this, Sign_UpActivity.class);
+        Intent intent = new Intent(SignInActivity.this, Sign_UpActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.chat_sign_in_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_home_option) {
+            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_signout_option) {
+            auth.signOut();
+            Intent intent = new Intent(SignInActivity.this, SignInActivity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
+
 
 //    private void SignIn(String email, String password) {
 //        Log.d(TAG, "signIn:" + email);

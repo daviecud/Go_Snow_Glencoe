@@ -7,41 +7,24 @@
     tools:context=".Sign_UpActivity"
     android:background="@drawable/bg_gradient">
 
+    <include
+        android:id="@+id/chat_toolbar"
+        layout="@layout/app_bar_layout">
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="192dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="26dp"
-        android:text="status"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </include>
 
-    <TextView
-        android:id="@+id/detail"
-        android:layout_width="192dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="116dp"
-        android:text="details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
         android:id="@+id/loginImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/snowflake"
+        android:layout_width="267dp"
+        android:layout_height="168dp"
+        android:src="@drawable/chatting"
+        app:layout_constraintTop_toBottomOf="@+id/chat_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+        android:layout_marginTop="10dp"
+        tools:layout_editor_absoluteY="54dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -54,14 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginImage"
         app:layout_constraintVertical_bias="0.585">
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Username"
-            />
 
         <EditText
             android:id="@+id/email"
@@ -96,22 +71,10 @@
             android:layout_height="63dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/white"
-            android:text="Sign In"
-            android:textSize="24sp"
+            android:text="Already have an account?"
+            android:textSize="20sp"
             android:textStyle="bold"
              />
-
-
-
-        <Button
-            android:id="@+id/sign_out_btn"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="@color/white"
-            android:text="Sign Out"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
 
 
     </LinearLayout>

@@ -24,6 +24,15 @@ public class SnowReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snow_report);
 
+
+        InitializeFields();
+
+        new GetWeatherInfoTask().execute();
+        new GetSnowInfoTask().execute();
+    }
+
+    private void InitializeFields() {
+
         access_snow = findViewById(R.id.accessDepthJson);
         top_snow = findViewById(R.id.topDepthJson);
         new_snow = findViewById(R.id.newSnowJson);
@@ -46,11 +55,9 @@ public class SnowReportActivity extends AppCompatActivity {
         windSpeed = findViewById(R.id.wndSpdJson);
         windGust = findViewById(R.id.wndGstJson);
 
-        new getWeatherInfoTask().execute();
-        new getSnowInfoTask().execute();
     }
 
-     class getWeatherInfoTask extends AsyncTask<String, Void, String> {
+    class GetWeatherInfoTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -65,7 +72,6 @@ public class SnowReportActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... args) {
 
-            String url = HttpRequest.executeGet( "https://api.weatherunlocked.com/api/resortforecast/1398?num_of_days=1&hourly_interval=6&" );
             return url;
         }
 
@@ -126,50 +132,14 @@ public class SnowReportActivity extends AppCompatActivity {
                             JSONObject jsonUpper = jsoObject.getJSONObject("upper");
                         }
                     }
-
                 }
-
-
-//                JSONObject baseJson = forecast.getJSONObject(0).getJSONObject("base");
-//                String wther = baseJson.getString("wx_desc");
-//                JSONObject weather = forecast.getJSONObject(0);
-//                JSONObject freshSnw = forecast.getJSONObject(1);
-//                JSONObject temptr = forecast.getJSONObject(1);
-//                JSONObject feels = forecast.getJSONObject(1);
-//                JSONObject windD = forecast.getJSONObject(1);
-//                JSONObject windS = forecast.getJSONObject(1);
-//                JSONObject windG = forecast.getJSONObject(1);
-//
-////                String weatherCond = weather.getString("wx_desc");
-////                String fSnow = freshSnw.getString("freshsnow_cm") + "cm";
-//                String temperature = temptr.getString("temp_c") + "°C";
-//                String fLike = feels.getString("feelslike_c") + "°C";
-//                String wDir = windD.getString("winddir_compass");
-//                String wSpd = windS.getString("windspd_mph") + "mph";
-//                String wGst = windG.getString("windgst_mph") + "mph";
-//
-////                conditions.setText(weatherCond);
-////                freshSnow.setText(fSnow);
-//                temp.setText(temperature);
-//                feelsLike.setText(fLike);
-//                windDir.setText(wDir);
-//                windSpeed.setText(wSpd);
-//                windGust.setText(wGst);
-
-//                findViewById(R.id.loader).setVisibility(View.GONE);
-//                findViewById(R.id.snowContainer).setVisibility(View.VISIBLE);
-
             }catch (JSONException e) {
-
-//                findViewById(R.id.loader).setVisibility(View.GONE);
-//                findViewById(R.id.errorText).setVisibility(View.VISIBLE);
-
                 e.printStackTrace();
             }
         }
     }
 
-    class getSnowInfoTask extends AsyncTask<String, Void, String> {
+    class GetSnowInfoTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -178,7 +148,6 @@ public class SnowReportActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... args) {
-            String snowUrl = HttpRequest.executeGet("https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&");
             return snowUrl;
         }
 
