@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".SportActivity">
 
+    <include
+        android:id="@+id/snow_sport_toolbar"
+        layout="@layout/app_bar_layout">
+
+    </include>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

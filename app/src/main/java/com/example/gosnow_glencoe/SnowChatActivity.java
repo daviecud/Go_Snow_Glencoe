@@ -64,12 +64,12 @@ public class SnowChatActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        ConfirmUserExistence();
+        confirmUserExistence();
         FirebaseUser currentUser = auth.getCurrentUser();
 
     }
 
-    private void ConfirmUserExistence() {
+    private void confirmUserExistence() {
         String currentUsersID = auth.getCurrentUser().getUid();
         rootRef.child("Users").child(currentUsersID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,7 +79,7 @@ public class SnowChatActivity extends AppCompatActivity {
                     Toast.makeText(SnowChatActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    SendUserToSettingsActivity();
+                    sendUserToSettingsActivity();
                 }
             }
 
@@ -109,7 +109,7 @@ public class SnowChatActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.menu_create_group_option) {
-            GetNewGroup();
+            getNewGroup();
         }
 
         if (item.getItemId() == R.id.menu_signout_option) {
@@ -119,7 +119,7 @@ public class SnowChatActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.menu_setting_option) {
-            SendUserToSettingsActivity();
+            sendUserToSettingsActivity();
         }
 
         if (item.getItemId() == R.id.menu_find_friends_option) {
@@ -129,7 +129,7 @@ public class SnowChatActivity extends AppCompatActivity {
         return true;
     }
 
-    private void GetNewGroup() {
+    private void getNewGroup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(SnowChatActivity.this, R.style.AlertDialog);
         builder.setTitle("Enter Group Name: ");
 
@@ -146,7 +146,7 @@ public class SnowChatActivity extends AppCompatActivity {
                     Toast.makeText(SnowChatActivity.this, "Please enter a Group Name", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    CreateNewGroup(groupName);
+                    createNewGroup(groupName);
                 }
             }
         });
@@ -161,7 +161,7 @@ public class SnowChatActivity extends AppCompatActivity {
     builder.show();
     }
 
-    private void CreateNewGroup(final String groupName) {
+    private void createNewGroup(final String groupName) {
         rootRef.child("Groups").child(groupName).setValue("")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -173,11 +173,9 @@ public class SnowChatActivity extends AppCompatActivity {
                 });
     }
 
-    private void SendUserToSettingsActivity(){
+    private void sendUserToSettingsActivity(){
         Intent intent = new Intent(SnowChatActivity.this, SettingsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
 
     private void sendUserToFindFriendsActivity() {

@@ -1,20 +1,33 @@
 package com.example.gosnow_glencoe;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.jetradarmobile.snowfall.SnowfallView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class SnowReportActivity extends AppCompatActivity {
 
     TextView access_snow, top_snow, new_snow, last_snow, report_date, report_time, freezeLvl, rainfall, snowfall,
-            visibility, perctOpen, conditions, weatherDesc, freshSnow, temp, feelsLike, windDir, windSpeed, windGust;
+            visibility, perctOpen, conditions, weatherDesc, freshSnow, temp, feelsLike, windDir, windSpeed, windGust,
+            topWeatherDesc, topFreshSnow, topTemp, topFeelsLike, topWindDir, topWindSpeed, topWindGust;
+    Toolbar toolbar;
+    SnowfallView snowfallView;
+
+    Date today, next_day;
 
     /*TODO get and set JSon results for upper slopes, fix layouts of details and add images to details,
        add a cartoon mountain as background, figure out how to use scrollview for activity,
@@ -24,6 +37,11 @@ public class SnowReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snow_report);
 
+        toolbar = findViewById(R.id.snow_report_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Snow Report");
+
+        snowfallView = findViewById(R.id.snowfallView);
 
         InitializeFields();
 
@@ -33,8 +51,8 @@ public class SnowReportActivity extends AppCompatActivity {
 
     private void InitializeFields() {
 
-        access_snow = findViewById(R.id.accessDepthJson);
-        top_snow = findViewById(R.id.topDepthJson);
+        access_snow = findViewById(R.id.access_depth_json);
+        top_snow = findViewById(R.id.top_depth_json);
         new_snow = findViewById(R.id.newSnowJson);
         report_date = findViewById(R.id.reportDateJson);
         report_time = findViewById(R.id.reportTimeJson);
@@ -55,6 +73,56 @@ public class SnowReportActivity extends AppCompatActivity {
         windSpeed = findViewById(R.id.wndSpdJson);
         windGust = findViewById(R.id.wndGstJson);
 
+        //Top Details Views
+        topWeatherDesc = findViewById(R.id.top_weather_json);
+        topFreshSnow = findViewById(R.id.top_fresh_snow_json);
+        topTemp = findViewById(R.id.top_temp_json);
+        topFeelsLike = findViewById(R.id.top_feels_like_json);
+        topWindDir = findViewById(R.id.top_wind_dir_json);
+        topWindSpeed = findViewById(R.id.top_wind_spd_json);
+        topWindGust = findViewById(R.id.top_wind_gust_json);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.snow_report_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_home_option) {
+            Intent intent = new Intent(SnowReportActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_snow_sports_option) {
+            Intent intent = new Intent(SnowReportActivity.this, SportActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_resort_option) {
+            Intent intent = new Intent(SnowReportActivity.this, ResortActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_business_option) {
+            Intent intent = new Intent(SnowReportActivity.this, BusinessActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_directions_option) {
+            Intent intent = new Intent(SnowReportActivity.this, DirectionsActivity.class);
+            startActivity(intent);
+        }
+
+
+        return true;
     }
 
     class GetWeatherInfoTask extends AsyncTask<String, Void, String> {
@@ -71,8 +139,7 @@ public class SnowReportActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... args) {
-
-            return url;
+            return HttpRequest.executeGet("https://api.weatherunlocked.com/api/resortforecast/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3");
         }
 
         @Override
@@ -128,8 +195,24 @@ public class SnowReportActivity extends AppCompatActivity {
                             windSpeed.setText(wSpd);
                             windGust.setText(wGst);
                         }
+
                         if (jsoObject.has("upper")) {
                             JSONObject jsonUpper = jsoObject.getJSONObject("upper");
+                            String top_weath = jsonUpper.getString("wx_desc");
+                            String top_frshSnow = jsonUpper.getString("freshsnow_cm") + "cm";
+                            String top_temp = jsonUpper.getString("temp_c") + "°C";
+                            String top_feelsLike = jsonUpper.getString("feelslike_c") + "°C";
+                            String top_winDir = jsonUpper.getString("winddir_compass");
+                            String top_winSpd = jsonUpper.getString("windspd_mph") + "mph";
+                            String top_winGst = jsonUpper.getString("windgst_mph") + "mph";
+
+                            topWeatherDesc.setText(top_weath);
+                            topFreshSnow.setText(top_frshSnow);
+                            topTemp.setText(top_temp);
+                            topFeelsLike.setText(top_feelsLike);
+                            topWindDir.setText(top_winDir);
+                            topWindSpeed.setText(top_winSpd);
+                            topWindGust.setText(top_winGst);
                         }
                     }
                 }
@@ -148,7 +231,7 @@ public class SnowReportActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... args) {
-            return snowUrl;
+            return HttpRequest.executeGet("https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3");
         }
 
         @Override
@@ -180,4 +263,6 @@ public class SnowReportActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

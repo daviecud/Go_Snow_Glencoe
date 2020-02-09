@@ -6,4 +6,5 @@
     <color name="ice">#FFA2FAF0</color>
     <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="semiTransparentColor">#20ffffff</color>
 </resources>

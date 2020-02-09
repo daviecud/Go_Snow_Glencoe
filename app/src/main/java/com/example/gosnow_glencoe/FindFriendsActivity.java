@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.*;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -41,21 +40,21 @@ public class FindFriendsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Find Friends");
+        getSupportActionBar().setTitle("Find Contacts");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Friends> options = new FirebaseRecyclerOptions.Builder<Friends>()
-                .setQuery(usersRef, Friends.class)
+        FirebaseRecyclerOptions<Contacts> options = new FirebaseRecyclerOptions.Builder<Contacts>()
+                .setQuery(usersRef, Contacts.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Friends, FindFriendsViewHolder> adapter = new FirebaseRecyclerAdapter<Friends, FindFriendsViewHolder>(options) {
-            //retrieving database users using Friends class
+        FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder> adapter = new FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder>(options) {
+            //retrieving database users using Contacts class
             @Override
-            protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int position, @NonNull Friends model) {
+            protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int position, @NonNull Contacts model) {
                 holder.userName.setText(model.getName());
                 holder.userStatus.setText(model.getStatus());
                 Picasso.get().load(model.getProfileImage()).placeholder(R.drawable.profile).into(holder.profileImage);
@@ -86,7 +85,6 @@ public class FindFriendsActivity extends AppCompatActivity {
     }
 
     public static class FindFriendsViewHolder extends RecyclerView.ViewHolder {
-
 
         TextView userName, userStatus;
         CircleImageView profileImage;

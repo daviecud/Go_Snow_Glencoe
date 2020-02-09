@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_gradient">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +36,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="user name"
+                    android:textColor="@color/white"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -50,6 +53,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="status"
+                    android:textColor="@color/white"
                     android:textAlignment="textStart"
                     android:textSize="15sp"
                     />
@@ -62,6 +66,36 @@
                     android:layout_marginTop="0dp"
                     app:srcCompat="@drawable/green_online_24dp"
                     android:visibility="visible"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/accept_request_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Accept"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        android:background="@color/common_google_signin_btn_text_dark_default"
+                        android:visibility="invisible"
+                        />
+
+                    <Button
+                        android:id="@+id/cancel_request_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Cancel"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        android:background="@color/fui_bgEmail"
+                        android:visibility="invisible"
+                        />
 
                 </LinearLayout>
 

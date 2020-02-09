@@ -11,11 +11,11 @@
         android:id="@+id/bus_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="5sp"
-        android:layout_marginBottom="5sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="15dp">
+        app:cardElevation="20dp">
 
         <RelativeLayout
             android:id="@+id/relative_layout"

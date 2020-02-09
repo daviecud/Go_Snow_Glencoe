@@ -2,14 +2,14 @@ package com.example.gosnow_glencoe;
 
 import android.widget.ImageView;
 
-public class Friends {
+public class Contacts {
 
     private String name, status, profileImage;
 
-    public Friends() {
+    public Contacts() {
     }
 
-    public Friends(String name, String status, String profileImage) {
+    public Contacts(String name, String status, String profileImage) {
         this.name = name;
         this.status = status;
         this.profileImage = profileImage;

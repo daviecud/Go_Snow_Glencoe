@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home_option"
+        android:title="Home"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_snow_sports_option"
+        android:title="Snow Sports"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_snow_chat_option"
+        android:title="Snow Chat"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_resort_option"
+        android:title="Resort Info"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_business_option"
+        android:title="Local Business"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_directions_option"
+        android:title="Directions"
+        app:showAsAction="never"
+        >
+    </item>
+
+</menu>

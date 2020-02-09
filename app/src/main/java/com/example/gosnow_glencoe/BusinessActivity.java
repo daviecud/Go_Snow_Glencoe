@@ -1,10 +1,16 @@
 package com.example.gosnow_glencoe;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +20,7 @@ public class BusinessActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     BusinessAdapter adapter;
+    Toolbar toolbar;
 
     List<BusinessDetails> infoList;
 
@@ -25,6 +32,10 @@ public class BusinessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_business);
 
         infoList = new ArrayList<>();
+
+        toolbar = findViewById(R.id.business_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Local Business");
 
         recyclerView = findViewById(R.id.localBus_RecycleView);
         recyclerView.setHasFixedSize(true);
@@ -48,7 +59,7 @@ public class BusinessActivity extends AppCompatActivity {
                 "The Green Welly Stop",
                 "Tyndrum, FK20 8RY",
                 "01838 400271",
-                "www.thegreenwellystop",
+                "www.thegreenwellystop.co.uk",
                 "Gifts - Food & Drink - Petrol - OutdoorWear",
                 R.drawable.greenwelly
         ));
@@ -87,4 +98,46 @@ public class BusinessActivity extends AppCompatActivity {
         adapter = new BusinessAdapter(this, infoList);
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.snow_sports_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_home_option) {
+            Intent intent = new Intent(BusinessActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_snow_report_option) {
+            Intent intent = new Intent(BusinessActivity.this, SnowReportActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_snow_report_option) {
+            Intent intent = new Intent(BusinessActivity.this, SnowReportActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_resort_option) {
+            Intent intent = new Intent(BusinessActivity.this, ResortActivity.class);
+            startActivity(intent);
+        }
+
+
+        if (item.getItemId() == R.id.menu_directions_option) {
+            Intent intent = new Intent(BusinessActivity.this, DirectionsActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
+
 }
