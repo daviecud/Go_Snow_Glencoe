@@ -1,4 +1,4 @@
-package com.example.gosnow_glencoe;
+package com.example.gosnow_glencoe.SnowChat;
 
 
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.gosnow_glencoe.R;
+import com.example.gosnow_glencoe.SnowChat.GroupChatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

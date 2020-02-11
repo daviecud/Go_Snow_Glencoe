@@ -1,4 +1,4 @@
-package com.example.gosnow_glencoe;
+package com.example.gosnow_glencoe.SnowChat;
 
 import android.widget.ImageView;
 

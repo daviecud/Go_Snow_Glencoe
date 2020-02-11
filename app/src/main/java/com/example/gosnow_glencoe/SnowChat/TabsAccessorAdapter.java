@@ -1,4 +1,9 @@
-package com.example.gosnow_glencoe;
+package com.example.gosnow_glencoe.SnowChat;
+
+import com.example.gosnow_glencoe.SnowChat.ChatsFragment;
+import com.example.gosnow_glencoe.SnowChat.ContactsFragment;
+import com.example.gosnow_glencoe.SnowChat.GroupChatsFragment;
+import com.example.gosnow_glencoe.SnowChat.RequestFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -13,14 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserProfileActivity"></activity>
         <activity
-            android:name=".FindFriendsActivity"
-            android:parentActivityName=".SnowChatActivity" />
-        <activity android:name=".GroupChatActivity" />
-        <activity android:name=".SettingsActivity"
-            android:parentActivityName=".SnowChatActivity"
-            ></activity>
+            android:name=".SnowChat.ChatsActivity"
+            android:parentActivityName=".SnowChat.SnowChatActivity">
+        </activity>
+        <activity android:name=".SnowChat.UserProfileActivity" />
+        <activity
+            android:name=".SnowChat.FindFriendsActivity"
+            android:parentActivityName=".SnowChat.SnowChatActivity" />
+        <activity android:name=".SnowChat.GroupChatActivity" />
+        <activity
+            android:name=".SnowChat.SettingsActivity"
+            android:parentActivityName=".SnowChat.SnowChatActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +33,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".BaseActivity" />
-        <activity android:name=".PasswordResetActivity" />
-        <activity android:name=".Sign_UpActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".SnowChatActivity" />
+        <activity android:name=".SnowChat.PasswordResetActivity" />
+        <activity android:name=".SnowChat.Sign_UpActivity" />
+        <activity android:name=".SnowChat.SignInActivity" />
+        <activity android:name=".SnowChat.SnowChatActivity" />
         <activity android:name=".DirectionsActivity" />
         <activity android:name=".BusinessActivity" />
         <activity android:name=".ResortActivity" />

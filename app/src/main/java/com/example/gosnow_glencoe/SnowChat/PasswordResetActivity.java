@@ -1,8 +1,10 @@
-package com.example.gosnow_glencoe;
+package com.example.gosnow_glencoe.SnowChat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.gosnow_glencoe.R;
 
 public class PasswordResetActivity extends AppCompatActivity {
 
