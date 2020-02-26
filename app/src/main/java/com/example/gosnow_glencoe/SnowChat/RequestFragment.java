@@ -39,15 +39,10 @@ public class RequestFragment extends Fragment {
     private DatabaseReference chatRequestRef, usersRef, contactsRef;
     private FirebaseAuth auth;
     private String currentUserID;
+    private Button acceptButton, cancelButton;
 
     public RequestFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -56,9 +51,10 @@ public class RequestFragment extends Fragment {
         // Inflate the layout for this fragment
         requestFragmentView =  inflater.inflate(R.layout.fragment_request, container, false);
 
-        chatRequestRef = FirebaseDatabase.getInstance().getReference().child("Chat Requests");
         auth = FirebaseAuth.getInstance();
         currentUserID = auth.getUid();
+        chatRequestRef = FirebaseDatabase.getInstance().getReference().child("Chat Requests");
+
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         contactsRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
 
@@ -82,8 +78,8 @@ public class RequestFragment extends Fragment {
                 holder.itemView.findViewById(R.id.accept_request_button).setVisibility(View.VISIBLE);
                 holder.itemView.findViewById(R.id.cancel_request_button).setVisibility(View.VISIBLE);
 
+                //get first key, get ID and get request_type from Firebase
                 final String listUserID = getRef(position).getKey();
-
                 DatabaseReference getTypeRef = getRef(position).child("request_type").getRef();
 
                 getTypeRef.addValueEventListener(new ValueEventListener() {
@@ -124,7 +120,7 @@ public class RequestFragment extends Fragment {
                                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                                                        //if user clicks position 0 (Accept) from options array above
                                                         if (i == 0) {
                                                             contactsRef.child(currentUserID).child(listUserID).child("Contacts")
                                                                     .setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -137,14 +133,14 @@ public class RequestFragment extends Fragment {
                                                                             @Override
                                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                                 if (task.isSuccessful()) {
-
+                                                                                    //removes request from senders request list
                                                                                     chatRequestRef.child(currentUserID).child(listUserID)
                                                                                             .removeValue()
                                                                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                 @Override
                                                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                                                     if (task.isSuccessful()) {
-
+                                                                                                        //removes request from receivers request list after user(s) Accept or Cancel request
                                                                                                         chatRequestRef.child(listUserID).child(currentUserID)
                                                                                                                 .removeValue()
                                                                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -165,7 +161,7 @@ public class RequestFragment extends Fragment {
                                                                 }
                                                             });
                                                         }
-
+                                                        //if user clicks postion 1 (Cancel) from options array above
                                                         if (i == 1) {
                                                             chatRequestRef.child(currentUserID).child(listUserID)
                                                                     .removeValue()
@@ -218,7 +214,7 @@ public class RequestFragment extends Fragment {
             @Override
             public RequestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_layout, parent, false);
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.contact_layout, parent, false);
                 RequestViewHolder holder = new RequestViewHolder(view);
                 return holder;
             }

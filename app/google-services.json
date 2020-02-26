@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "676173898382-k938688o2eitf9jv9m78pdp4251ir89j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gosnow_glencoe",
+            "certificate_hash": "b584aeb310bcd0dd689e1d5bed180664120fc885"
+          }
+        },
+        {
           "client_id": "676173898382-45blvmbfbfogki8er6b09u80lb4htgib.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Sign_UpActivity extends BaseActivity {
 
@@ -109,7 +110,12 @@ public class Sign_UpActivity extends BaseActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 String currentUserID = auth.getCurrentUser().getUid();
+                                String phoneDeviceId = FirebaseInstanceId.getInstance().getToken();
+
                                 rootRef.child("Users").child(currentUserID).setValue("");
+                                rootRef.child("Users").child(currentUserID).child("device_Id")
+                                        .setValue(phoneDeviceId);
+
                                 Intent intent = new Intent(Sign_UpActivity.this, SnowChatActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

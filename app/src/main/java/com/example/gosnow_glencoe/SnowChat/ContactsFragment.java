@@ -88,7 +88,6 @@ public class ContactsFragment extends Fragment {
                             holder.userStatus.setText(profileStatus); // .userStatus is declared in ContactsViewHolder class
                             Picasso.get().load(contactImage).placeholder(R.drawable.profile).into(holder.profileImage); // .profileImage is declared in ContactsViewHolder class
 
-
                         } else {
                             String profileName = dataSnapshot.child("name").getValue().toString();
                             String profileStatus = dataSnapshot.child("status").getValue().toString();

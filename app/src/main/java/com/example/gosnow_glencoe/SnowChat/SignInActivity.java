@@ -20,10 +20,15 @@ import com.example.gosnow_glencoe.BaseActivity;
 import com.example.gosnow_glencoe.MainActivity;
 import com.example.gosnow_glencoe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class SignInActivity extends BaseActivity {
 
@@ -35,6 +40,7 @@ public class SignInActivity extends BaseActivity {
     private FirebaseAuth auth;
     private ProgressDialog loadingBar;
     private static final String TAG = "EmailPassword";
+    private DatabaseReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class SignInActivity extends BaseActivity {
         //Initialize FirebaseAuth
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
         loadingBar = new ProgressDialog(this);
 
         InitializeFields();
@@ -55,7 +63,7 @@ public class SignInActivity extends BaseActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AllowUserToSignIn();
+                allowUserToSignIn();
             }
         });
 
@@ -89,7 +97,7 @@ public class SignInActivity extends BaseActivity {
         }
     }
 
-    private void AllowUserToSignIn() {
+    private void allowUserToSignIn() {
 
         String email = input_email.getText().toString();
         String password = input_password.getText().toString();
@@ -112,8 +120,29 @@ public class SignInActivity extends BaseActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                SendUserToSnowChatActivity();
-                                loadingBar.dismiss();
+
+                                String currentUserID = auth.getCurrentUser().getUid();
+                                String phoneDeviceTokenID = FirebaseInstanceId.getInstance().getToken();
+//                                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SignInActivity.this, new OnSuccessListener<InstanceIdResult>() {
+//                                    @Override
+//                                    public void onSuccess(InstanceIdResult instanceIdResult) {
+//                                        String token = instanceIdResult.getToken();
+//                                        Log.e("Token", token);
+//                                    }
+//                                });
+
+                                userRef.child(currentUserID).child("device_Id")
+                                        .setValue(phoneDeviceTokenID)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+                                                    SendUserToSnowChatActivity();
+                                                    loadingBar.dismiss();
+                                                }
+                                            }
+                                        });
                             }
                             else {
                                 Toast.makeText(SignInActivity.this, "Error: ", Toast.LENGTH_SHORT).show();
@@ -211,38 +240,38 @@ public class SignInActivity extends BaseActivity {
 //        auth.signOut();
 //    }
 
-//    private boolean validateForm() {
-//        boolean valid = true;
-//
-//        String email = input_email.getText().toString();
-//        //Check email field is not empty
-//        if (TextUtils.isEmpty(email)) {
-//            input_email.setError("Required");
-//            valid = false;
-//        } else {
-//            input_email.setError(null);
-//        }
-//        //Check if email contains @ in the email address
-//        if (!email.contains("@")) {
-//            input_email.setError("@ required");
-//            valid = false;
-//        }
-//
-//        String password = input_password.getText().toString();
-//        //Check password field is not empty
-//        if (TextUtils.isEmpty(password)) {
-//            input_password.setError("Required");
-//            valid = false;
-//        } else {
-//            input_password.setError(null);
-//        }
-//
-//        if (password.length() < 6) {
-//            Toast.makeText(getApplicationContext(),
-//                    "Password too short, enter minimum 6 characters!!",
-//                    Toast.LENGTH_SHORT).show();
-//            valid = false;
-//        }
-//        return valid;
-//    }
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = input_email.getText().toString();
+        //Check email field is not empty
+        if (TextUtils.isEmpty(email)) {
+            input_email.setError("Required");
+            valid = false;
+        } else {
+            input_email.setError(null);
+        }
+        //Check if email contains @ in the email address
+        if (!email.contains("@")) {
+            input_email.setError("@ required");
+            valid = false;
+        }
+
+        String password = input_password.getText().toString();
+        //Check password field is not empty
+        if (TextUtils.isEmpty(password)) {
+            input_password.setError("Required");
+            valid = false;
+        } else {
+            input_password.setError(null);
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(),
+                    "Password too short, enter minimum 6 characters!!",
+                    Toast.LENGTH_SHORT).show();
+            valid = false;
+        }
+        return valid;
+    }
 }

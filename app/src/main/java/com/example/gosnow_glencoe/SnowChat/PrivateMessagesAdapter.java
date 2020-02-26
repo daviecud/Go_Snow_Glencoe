@@ -53,9 +53,7 @@ public class PrivateMessagesAdapter extends RecyclerView.Adapter<PrivateMessages
 
         auth = FirebaseAuth.getInstance();
 
-
         return new PrivateMessageViewHolder(view);
-
     }
 
     @Override
@@ -86,30 +84,28 @@ public class PrivateMessagesAdapter extends RecyclerView.Adapter<PrivateMessages
         if (fromMessageType.equals("text")) {
             holder.receiverMessageText.setVisibility(View.INVISIBLE);
             holder.receiverProfileImage.setVisibility(View.INVISIBLE);
+            holder.senderMessageText.setVisibility(View.INVISIBLE);
+
 
             if (fromUserId.equals(messageSenderId)) {
+                holder.senderMessageText.setVisibility(View.VISIBLE);
                 holder.senderMessageText.setBackgroundResource(R.drawable.sender_message_layout);
                 holder.senderMessageText.setText(messages.getMessage());
             }
 
             else {
-                holder.senderMessageText.setVisibility(View.INVISIBLE);
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
                 holder.receiverMessageText.setVisibility(View.VISIBLE);
 
                 holder.receiverMessageText.setBackgroundResource(R.drawable.receiver_message_layout);
                 holder.receiverMessageText.setText(messages.getMessage());
 
-
             }
         }
-
     }
 
     @Override
     public int getItemCount() {
         return privateMessagesList.size();
     }
-
-
 }

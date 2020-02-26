@@ -21,14 +21,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     private String receiverUserID, senderUserID, currentState;
     private TextView userProfileName, userProfileStatus;
     private CircleImageView userProfileImage;
     private Button sendMessageRequestButton, cancelRequestButton;
-    private DatabaseReference userRef, messageRequestRef, contactsRef;
+    private DatabaseReference userRef, messageRequestRef, contactsRef, notificationRef;
     private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class UserProfileActivity extends AppCompatActivity {
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         messageRequestRef = FirebaseDatabase.getInstance().getReference().child("Chat Requests");
         contactsRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
+        notificationRef = FirebaseDatabase.getInstance().getReference().child("Notification");
 
         receiverUserID = getIntent().getExtras().get("clicked_user_id").toString();
         senderUserID = auth.getCurrentUser().getUid();
@@ -58,9 +62,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         sendMessageRequestButton = findViewById(R.id.send_message_request_button);
         cancelRequestButton = findViewById(R.id.cancel_message_request_button);
-
-
-
     }
 
     private void referenceToUser() {
@@ -111,8 +112,7 @@ public class UserProfileActivity extends AppCompatActivity {
                                 currentState = "request_sent";
                                 sendMessageRequestButton.setText("Cancel Request");
 
-                                cancelRequestButton.setVisibility(View.INVISIBLE);
-                                cancelRequestButton.setEnabled(false);
+
                             }
                             else if (request_type.equals("received")){
                                  currentState = "request_received";
@@ -138,8 +138,6 @@ public class UserProfileActivity extends AppCompatActivity {
                                                 currentState = "accepted";
                                                 sendMessageRequestButton.setText("Remove Contact");
 
-                                                cancelRequestButton.setVisibility(View.INVISIBLE);
-                                                cancelRequestButton.setEnabled(false);
                                             }
                                         }
 
@@ -291,12 +289,26 @@ public class UserProfileActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                sendMessageRequestButton.setEnabled(true);
-                                                currentState = "request_sent";
-                                                sendMessageRequestButton.setText("Cancel Request");
 
-                                                cancelRequestButton.setVisibility(View.INVISIBLE);
-                                                cancelRequestButton.setEnabled(false);
+                                                HashMap<String, String> requestNotification = new HashMap<>();
+                                                requestNotification.put("from", senderUserID);
+                                                requestNotification.put("type", "request");
+
+                                                notificationRef.child(receiverUserID).push()
+                                                        .setValue(requestNotification)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                                if (task.isSuccessful()) {
+                                                                    sendMessageRequestButton.setEnabled(true);
+                                                                    currentState = "request_sent";
+                                                                    sendMessageRequestButton.setText("Cancel Request");
+
+                                                                }
+                                                            }
+                                                        });
+
                                             }
                                         }
                                     });
