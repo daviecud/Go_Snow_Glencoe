@@ -85,14 +85,30 @@ public class ChatsFragment extends Fragment {
                             if (dataSnapshot.hasChild("image")) {
                                 getImage[0] = dataSnapshot.child("image").getValue().toString();
                                 Picasso.get().load(getImage[0]).into(holder.profileImageView);
-
                             }
 
                             final String getName = dataSnapshot.child("name").getValue().toString();
                             final String getStatus = dataSnapshot.child("status").getValue().toString();
 
                             holder.userName.setText(getName);
-                            holder.userStatus.setText("Last seen: " + "\n" + "Date" +" Time");
+
+                            if (dataSnapshot.child("userStatus").hasChild("state")) {
+                                String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
+                                String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
+                                String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
+
+                                if (status.equals("online")) {
+                                    holder.userStatus.setText("online");
+                                }
+                                if (status.equals("offline")) {
+                                    holder.userStatus.setText("Last seen: " + date + " " + time);
+                                }
+
+
+
+                            } else {
+                                holder.userStatus.setText("offline");
+                            }
 
                             holder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override

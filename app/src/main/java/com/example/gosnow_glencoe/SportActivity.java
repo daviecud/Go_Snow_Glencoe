@@ -11,14 +11,12 @@ import android.view.MenuItem;
 
 public class SportActivity extends AppCompatActivity {
 
-
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
-
 
         toolbar = findViewById(R.id.snow_sport_toolbar);
         setSupportActionBar(toolbar);

@@ -29,6 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+
 public class SnowChatActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -38,6 +43,7 @@ public class SnowChatActivity extends AppCompatActivity {
 
     private DatabaseReference rootRef;
     private FirebaseAuth auth;
+    private String currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +68,33 @@ public class SnowChatActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser == null) {
+            sendUSerToLoginActivity();
+        } else {
+            confirmUserExistence();
+            updateUserStatus("online");
 
-        confirmUserExistence();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (currentUserID != null) {
+            updateUserStatus("offline");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         FirebaseUser currentUser = auth.getCurrentUser();
 
+        if (currentUserID != null) {
+            updateUserStatus("offline");
+        }
     }
 
     private void confirmUserExistence() {
@@ -112,6 +141,7 @@ public class SnowChatActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.menu_signout_option) {
+            updateUserStatus("offline");
             auth.signOut();
             Intent intent = new Intent(SnowChatActivity.this, SignInActivity.class);
             startActivity(intent);
@@ -124,7 +154,6 @@ public class SnowChatActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_find_friends_option) {
             sendUserToFindFriendsActivity();
         }
-
         return true;
     }
 
@@ -180,6 +209,33 @@ public class SnowChatActivity extends AppCompatActivity {
     private void sendUserToFindFriendsActivity() {
         Intent intent = new Intent(SnowChatActivity.this, FindFriendsActivity.class);
         startActivity(intent);
+    }
+
+    private void sendUSerToLoginActivity() {
+        Intent intent = new Intent(SnowChatActivity.this, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    private void updateUserStatus(String currentState) {
+        String saveCurrentTime, saveCurrentDate;
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        HashMap<String, Object> userOnlineStateMap = new HashMap<>();
+        userOnlineStateMap.put("time", saveCurrentTime);
+        userOnlineStateMap.put("date", saveCurrentDate);
+        userOnlineStateMap.put("state", currentState);
+
+        currentUserID = auth.getCurrentUser().getUid();
+
+        rootRef.child("Users").child(currentUserID).child("userStatus")
+                .updateChildren(userOnlineStateMap);
     }
 
 

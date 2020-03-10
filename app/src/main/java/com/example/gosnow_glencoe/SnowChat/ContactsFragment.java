@@ -12,6 +12,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gosnow_glencoe.R;
@@ -78,23 +79,39 @@ public class ContactsFragment extends Fragment {
                 usersRef.child(userIDs).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            if (dataSnapshot.child("userStatus").hasChild("state")) {
+                                String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
+                                String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
+                                String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
 
-                        if (dataSnapshot.hasChild("image")) {
-                            String contactImage = dataSnapshot.child("image").getValue().toString();
-                            String profileName = dataSnapshot.child("name").getValue().toString();
-                            String profileStatus = dataSnapshot.child("status").getValue().toString();
+                                if (status.equals("online")) {
+                                    holder.onlineIcon.setVisibility(View.VISIBLE);
+                                }
+                                if (status.equals("offline")) {
+                                    holder.onlineIcon.setVisibility(View.INVISIBLE);
+                                }
+                            } else {
+                                holder.onlineIcon.setVisibility(View.INVISIBLE);
+                            }
 
-                            holder.userName.setText(profileName); // .userName is declared in ContactsViewHolder class
-                            holder.userStatus.setText(profileStatus); // .userStatus is declared in ContactsViewHolder class
-                            Picasso.get().load(contactImage).placeholder(R.drawable.profile).into(holder.profileImage); // .profileImage is declared in ContactsViewHolder class
+                            if (dataSnapshot.hasChild("image")) {
+                                String contactImage = dataSnapshot.child("image").getValue().toString();
+                                String profileName = dataSnapshot.child("name").getValue().toString();
+                                String profileStatus = dataSnapshot.child("status").getValue().toString();
 
-                        } else {
-                            String profileName = dataSnapshot.child("name").getValue().toString();
-                            String profileStatus = dataSnapshot.child("status").getValue().toString();
+                                holder.userName.setText(profileName); // .userName is declared in ContactsViewHolder class
+                                holder.userStatus.setText(profileStatus); // .userStatus is declared in ContactsViewHolder class
+                                Picasso.get().load(contactImage).placeholder(R.drawable.profile).into(holder.profileImage); // .profileImage is declared in ContactsViewHolder class
 
-                            holder.userName.setText(profileName);
-                            holder.userStatus.setText(profileStatus);
+                            } else {
+                                String profileName = dataSnapshot.child("name").getValue().toString();
+                                String profileStatus = dataSnapshot.child("status").getValue().toString();
 
+                                holder.userName.setText(profileName);
+                                holder.userStatus.setText(profileStatus);
+
+                            }
                         }
                     }
 
@@ -124,6 +141,8 @@ public class ContactsFragment extends Fragment {
 
         TextView userName, userStatus;
         CircleImageView profileImage;
+        ImageView onlineIcon;
+
 
         public ContactsViewHolder(@NonNull View itemView) {
 
@@ -132,6 +151,7 @@ public class ContactsFragment extends Fragment {
             userName = itemView.findViewById(R.id.user_name_text);
             userStatus = itemView.findViewById(R.id.user_status_text);
             profileImage = itemView.findViewById(R.id.users_profile_picture);
+            onlineIcon = itemView.findViewById(R.id.user_online_symbol);
         }
     }
 }

@@ -77,7 +77,6 @@ public class Sign_UpActivity extends BaseActivity {
     }
 
     private void initializeFields() {
-
         //Views
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
@@ -85,7 +84,6 @@ public class Sign_UpActivity extends BaseActivity {
         //Buttons
         createAccBtn = findViewById(R.id.create_acc_btn);
         signInBtn = findViewById(R.id.sign_in_btn);
-
     }
 
     private void CreateAccount(String email, String password) {

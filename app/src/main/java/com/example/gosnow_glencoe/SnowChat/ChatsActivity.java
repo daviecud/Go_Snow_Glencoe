@@ -29,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -113,6 +114,34 @@ public class ChatsActivity extends AppCompatActivity {
         userMessagesList.setAdapter(messagesAdapter);
     }
 
+    private void displayLastSeen() {
+        rootRef.child("Users").child(messageSenderID)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("userStatus").hasChild("state")) {
+                            String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
+                            String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
+                            String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
+
+                            if (status.equals("online")) {
+                                userLastSeen.setText("online");
+                            }
+                            if (status.equals("offline")) {
+                                userLastSeen.setText("Last seen: " + date + " " + time);
+                            }
+                        } else {
+                            userLastSeen.setText("offline");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -122,11 +151,8 @@ public class ChatsActivity extends AppCompatActivity {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                         PrivateMessages messages = dataSnapshot.getValue(PrivateMessages.class);
-
                         privateMessagesList.add(messages);
-
                         messagesAdapter.notifyDataSetChanged();
-
                         userMessagesList.smoothScrollToPosition(userMessagesList.getAdapter().getItemCount());
                     }
 
