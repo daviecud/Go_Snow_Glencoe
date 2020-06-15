@@ -27,17 +27,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class GroupChatsFragment extends Fragment {
 
     private View groupFragmentView;
     private ListView list_view;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_groups = new ArrayList<>();
-
     private DatabaseReference rootRef;
 
 
@@ -56,9 +51,8 @@ public class GroupChatsFragment extends Fragment {
         rootRef = FirebaseDatabase.getInstance().getReference().child("Groups");
 
 
-        InitializeFields();
-
-        GetAndDisplayGroups();
+        initializeFields();
+        getAndDisplayGroups();
 
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,13 +71,13 @@ public class GroupChatsFragment extends Fragment {
     }
 
 
-    private void InitializeFields() {
+    private void initializeFields() {
         list_view = groupFragmentView.findViewById(R.id.list_view);
         arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, list_of_groups);
         list_view.setAdapter(arrayAdapter);
     }
 
-    private void GetAndDisplayGroups() {
+    private void getAndDisplayGroups() {
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

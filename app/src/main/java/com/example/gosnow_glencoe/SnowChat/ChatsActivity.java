@@ -87,8 +87,6 @@ public class ChatsActivity extends AppCompatActivity {
     }
 
     private void initializeFields() {
-
-
         chartToolBar = findViewById(R.id.chat_toolbar);
         setSupportActionBar(chartToolBar);
 

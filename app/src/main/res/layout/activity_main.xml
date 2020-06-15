@@ -178,6 +178,8 @@
             android:orientation="vertical"
             android:padding="4dp"
             android:clickable="true"
+            android:onClick="goToSnowSports"
+            android:focusable="true"
             >
 
             <ImageView

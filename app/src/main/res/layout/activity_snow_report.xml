@@ -50,7 +50,6 @@
 
             </include>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -95,7 +94,6 @@
                     android:layout_marginTop="10dp"
                     android:text="resort condtions"
                     android:textSize="18sp"
-
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.103"
                     app:layout_constraintStart_toStartOf="parent"
@@ -316,8 +314,8 @@
                         android:text="weather json"
                         android:textSize="18sp" />
 
-
                     <TableLayout
+                        android:id="@+id/baseWeatherJsonTable"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="55dp"
@@ -569,8 +567,10 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:src="@drawable/base" />
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:elevation="20dp"
+                android:src="@drawable/access_chair" />
 
 
             <androidx.cardview.widget.CardView
@@ -585,362 +585,306 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/base_layout">
 
-                <LinearLayout
-                    android:id="@+id/top_mountain_linearlayout"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="casual"
+                    android:text="Access @ 3600ft/1097m"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/top_depth_json"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="290dp"
+                    android:fontFamily="casual"
+                    android:text="access json"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/topweatherJson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:text="weather json"
+                    android:textSize="18sp" />
+
+
+                <TableLayout
+                    android:id="@+id/topWeatherJsonTable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginTop="55dp"
+                    android:background="@color/semiTransparentColor">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <TextView
-                            android:id="@+id/top_mountain_heading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="casual"
-                            android:text="Top @ 3600ft/1097m"
-                            android:textSize="22sp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/top_depth_heading"
+                            android:id="@+id/dateheading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="50dp"
-                            android:fontFamily="casual"
-                            android:text="depth: "
-                            android:textAlignment="textEnd"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/top_depth_json"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="casual"
-                            android:text="json"
-                            android:textSize="22sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/date_field"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="200dp"
                             android:text="Date"
                             android:textAlignment="textEnd"
-                            android:textSize="18sp" />
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/next_day_field"
+                            android:id="@+id/json24heading"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
                             android:text="+24hrs"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp" />
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_weather_image"
+                            android:id="@+id/freshsnowimage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/partlycloudyday" />
-
-                        <TextView
-                            android:id="@+id/top_weather_heading"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
-                            android:text="Weather"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/top_weather_json"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="110dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-
-
-                        <TextView
-                            android:id="@+id/top_weather_json_nextday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/top_fresh_snow_image"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:background="@color/white"
                             app:srcCompat="@drawable/blizzard" />
 
                         <TextView
-                            android:id="@+id/top_fresh_snow_heading"
+                            android:id="@+id/freshsnow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
                             android:text="Fresh Snow"
-                            android:textSize="16sp" />
+                            android:textSize="19sp"
+                            />
 
                         <TextView
-                            android:id="@+id/top_fresh_snow_json"
+                            android:id="@+id/topfreshSnowJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="90dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="fsnow json"
+
+                            />
 
                         <TextView
-                            android:id="@+id/top_fresh_snow_json_nextday"
+                            android:id="@+id/topfreshsnow24json"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="fsnow +24"
+                            />
+                    </TableRow>
 
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_temp_image"
+                            android:id="@+id/toptempimage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@color/white"
                             app:srcCompat="@drawable/temp" />
 
                         <TextView
-                            android:id="@+id/top_temp_heading"
+                            android:id="@+id/toptemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
                             android:text="Temperature"
-                            android:textSize="16sp" />
+                            android:textSize="19sp"
+                            />
 
                         <TextView
-                            android:id="@+id/top_temp_json"
+                            android:id="@+id/toptempJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="temp json" />
 
                         <TextView
-                            android:id="@+id/top_temp_json_nextday"
+                            android:id="@+id/toptemp24json"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="temp +24" />
+                    </TableRow>
 
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_feels_like_image"
+                            android:id="@+id/topfeelLikeImage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@color/white"
                             app:srcCompat="@drawable/feels_like" />
 
                         <TextView
-                            android:id="@+id/top_feels_like_heading"
+                            android:id="@+id/topfeelLike"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
-                            android:text="Feels Like"
-                            android:textSize="16sp" />
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="Feels like"
+                            android:textSize="19sp" />
 
                         <TextView
-                            android:id="@+id/top_feels_like_json"
+                            android:id="@+id/topfeelLikeJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="feel json" />
 
                         <TextView
-                            android:id="@+id/top_feels_like_json_nextday"
+                            android:id="@+id/topfeelLike24json"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="feel +24" />
+                    </TableRow>
 
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_wind_dir_image"
+                            android:id="@+id/topWndImage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@color/white"
                             app:srcCompat="@drawable/wind_direction" />
 
                         <TextView
-                            android:id="@+id/top_wind_dir_heading"
+                            android:id="@+id/topwndDir"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
                             android:text="Wind Direction"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
                         <TextView
-                            android:id="@+id/top_wind_dir_json"
+                            android:id="@+id/topwndDirJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wDir json" />
 
                         <TextView
-                            android:id="@+id/top_wind_dir_json_nextday"
+                            android:id="@+id/topwnddir24json"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wDir +24" />
+                    </TableRow>
 
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_wind_spd_image"
+                            android:id="@+id/topwndspdimage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@color/white"
                             app:srcCompat="@drawable/wind_speed" />
 
                         <TextView
-                            android:id="@+id/top_wind_spd_heading"
+                            android:id="@+id/topwindspd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
                             android:text="Wind Speed"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
                         <TextView
-                            android:id="@+id/top_wind_spd_json"
+                            android:id="@+id/topwndSpdJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wSpd json" />
 
                         <TextView
-                            android:id="@+id/top_wind_spd_json_nextday"
+                            android:id="@+id/topwindspd24json"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wSpd +24" />
+                    </TableRow>
 
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TableRow>
 
                         <ImageView
-                            android:id="@+id/top_wind_gust_image"
+                            android:id="@+id/wndgstimage"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            app:srcCompat="@drawable/temp" />
+                            android:background="@color/white"
+                            app:srcCompat="@drawable/wind_speed" />
 
                         <TextView
-                            android:id="@+id/top_wind_gust_heading"
+                            android:id="@+id/windGst"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
                             android:text="Wind Gust"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
                         <TextView
-                            android:id="@+id/top_wind_gust_json"
+                            android:id="@+id/topwndGstJson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="90dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wGst json" />
 
                         <TextView
-                            android:id="@+id/top_wind_gust_json_nextday"
+                            android:id="@+id/top_windgstjson24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80dp"
-                            android:text="json"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:text="wGst +24" />
+                    </TableRow>
 
-                    </LinearLayout>
-
-                </LinearLayout>
+                </TableLayout>
 
             </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:elevation="20dp"
+
                 android:src="@drawable/glencoe3" />
 
         </LinearLayout>

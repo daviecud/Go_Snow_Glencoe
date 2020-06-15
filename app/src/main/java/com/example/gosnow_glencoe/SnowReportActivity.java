@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.gosnow_glencoe.SnowChat.SnowChatActivity;
 import com.jetradarmobile.snowfall.SnowfallView;
 
 import org.json.JSONArray;
@@ -26,7 +27,6 @@ public class SnowReportActivity extends AppCompatActivity {
             topWeatherDesc, topFreshSnow, topTemp, topFeelsLike, topWindDir, topWindSpeed, topWindGust;
     Toolbar toolbar;
     SnowfallView snowfallView;
-
     Date today, next_day;
 
     /*TODO get and set JSon results for upper slopes, fix layouts of details and add images to details,
@@ -74,14 +74,13 @@ public class SnowReportActivity extends AppCompatActivity {
         windGust = findViewById(R.id.wndGstJson);
 
         //Top Details Views
-        topWeatherDesc = findViewById(R.id.top_weather_json);
-        topFreshSnow = findViewById(R.id.top_fresh_snow_json);
-        topTemp = findViewById(R.id.top_temp_json);
-        topFeelsLike = findViewById(R.id.top_feels_like_json);
-        topWindDir = findViewById(R.id.top_wind_dir_json);
-        topWindSpeed = findViewById(R.id.top_wind_spd_json);
-        topWindGust = findViewById(R.id.top_wind_gust_json);
-
+        topWeatherDesc = findViewById(R.id.topweatherJson);
+        topFreshSnow = findViewById(R.id.topfreshSnowJson);
+        topTemp = findViewById(R.id.toptempJson);
+        topFeelsLike = findViewById(R.id.topfeelLikeJson);
+        topWindDir = findViewById(R.id.topwndDirJson);
+        topWindSpeed = findViewById(R.id.topwndSpdJson);
+        topWindGust = findViewById(R.id.topwndGstJson);
     }
 
     @Override
@@ -106,6 +105,11 @@ public class SnowReportActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        if (item.getItemId() == R.id.menu_snow_chat_option) {
+            Intent intent  =  new Intent(SnowReportActivity.this, SnowChatActivity.class);
+            startActivity(intent);
+        }
+
         if (item.getItemId() == R.id.menu_resort_option) {
             Intent intent = new Intent(SnowReportActivity.this, ResortActivity.class);
             startActivity(intent);
@@ -120,8 +124,6 @@ public class SnowReportActivity extends AppCompatActivity {
             Intent intent = new Intent(SnowReportActivity.this, DirectionsActivity.class);
             startActivity(intent);
         }
-
-
         return true;
     }
 
@@ -156,14 +158,12 @@ public class SnowReportActivity extends AppCompatActivity {
                 JSONObject rain_f = forecast.getJSONObject(0);
                 JSONObject snow_f = forecast.getJSONObject(0);
 
-
                 String frz = freeze.getString("frzglvl_ft") + "(ft)";
                 String vizi = vis.getString("vis_mi") + "(mile)";
                 String date = rpt_date.getString("date");
                 String time = rpt_time.getString("time");
                 String rainfalling = rain_f.getString("rain_mm") + "(mm)";
                 String snowfalling = snow_f.getString("snow_mm") + "(mm)";
-
 
                 freezeLvl.setText(frz);
                 visibility.setText(vizi);
@@ -220,6 +220,7 @@ public class SnowReportActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
     }
 
     class GetSnowInfoTask extends AsyncTask<String, Void, String> {
