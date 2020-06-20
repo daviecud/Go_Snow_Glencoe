@@ -27,7 +27,6 @@ public class SportActivity extends AppCompatActivity {
     private String fullscreenInd;
     Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +35,6 @@ public class SportActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.snow_sport_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Snow Sports");
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-            }
-        });
-
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("ca-app-pub-9185610794869190/2251858395");
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
 
 //        pistemapImage = findViewById(R.id.pistemap_image);

@@ -15,6 +15,9 @@ import com.example.gosnow_glencoe.HttpRequest;
 import com.example.gosnow_glencoe.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,11 +27,9 @@ import org.json.JSONObject;
 
 public class TodaysFragment extends Fragment {
 
-    private TextView percentage_open, new_snow, frz_lvl, last_snow, visibility, snow_falling,
-                    access_weather, access_depth, access_fresh, access_temp, access_feels_like,
-                    access_wnd_dir, access_wnd_spd, access_wnd_gst, top_weather, top_depth, top_fresh,
-                    top_temp, top_feels_like, top_wnd_dir, top_wnd_spd, top_wnd_gst, resort_conditions;
     private View todaysFragmentView;
+    private AdView adView;
+    private AdRequest adRequest;
 
     public TodaysFragment() {
         // Required empty public constructor
@@ -42,7 +43,7 @@ public class TodaysFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         initializeFields();
         new GetWeatherJson().execute();
         new GetSnowInfoTask().execute();
@@ -53,8 +54,12 @@ public class TodaysFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         todaysFragmentView = inflater.inflate(R.layout.fragment_todays, container, false);
-        return todaysFragmentView;
 
+        adView = (AdView) todaysFragmentView.findViewById(R.id.adview);
+        adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        return todaysFragmentView;
     }
 
     private void initializeFields() {
@@ -75,7 +80,7 @@ public class TodaysFragment extends Fragment {
     /*Nested class
     * Retrieve Json details. Method doInBackground() will return http request using HttpCall.java.
     * onPostExecute() method uses try block to execute Json results.
-    * Json results will be set to the appropriate TextView field declared above as a String.
+    * Json results will be set to the appropriate TextView field
     * catch block will handle exceptions if they occur.
     * */
     class GetWeatherJson extends AsyncTask<String, Void, String> {
@@ -125,11 +130,12 @@ public class TodaysFragment extends Fragment {
                 visibility.setText(vizi);
                 snow_falling.setText(snowfalling);
 
-                //JSON for Base details
                 if (forecast.length() > 0) {
                     for (int x = 0; x < forecast.length(); x++) {
                         JSONObject jsoObject = forecast.getJSONObject(x);
 
+                        //TODO get weather symbol and code for base to set to image
+                        //JSON for Base details
                         if (jsoObject.has("base")) {
                             JSONObject jsonBase = jsoObject.getJSONObject("base");
                             String weather = jsonBase.getString("wx_desc");
@@ -148,6 +154,8 @@ public class TodaysFragment extends Fragment {
                             access_wnd_spd.setText(wSpd);
                             access_wnd_gst.setText(wGst);
                         }
+
+                        //TODO get weather icon and weather code to set to image
                         //Json for Top Details
                         if (jsoObject.has("upper")) {
                             JSONObject jsonUpper = jsoObject.getJSONObject("upper");
@@ -173,7 +181,6 @@ public class TodaysFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
     }
 
     class GetSnowInfoTask extends AsyncTask<String, Void, String> {

@@ -44,4 +44,11 @@
         >
     </item>
 
+    <item
+        android:id="@+id/menu_ads_option"
+        android:title="Ads"
+        app:showAsAction="never"
+        >
+    </item>
+
 </menu>

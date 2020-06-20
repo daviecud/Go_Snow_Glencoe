@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".AdActivity"></activity>
         <activity android:name=".SnowReport.SnowForecastActivity" />
         <activity
             android:name=".SnowChat.ChatsActivity"
@@ -51,7 +53,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9185610794869190~2349428292"/>
+            android:value="ca-app-pub-9185610794869190~2349428292" />
     </application>
 
 </manifest>

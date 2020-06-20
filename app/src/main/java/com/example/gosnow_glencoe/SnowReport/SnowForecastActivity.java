@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.gosnow_glencoe.AdActivity;
 import com.example.gosnow_glencoe.BusinessActivity;
 import com.example.gosnow_glencoe.DirectionsActivity;
 import com.example.gosnow_glencoe.MainActivity;
@@ -84,6 +85,11 @@ public class SnowForecastActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.menu_directions_option) {
             Intent intent = new Intent(SnowForecastActivity.this, DirectionsActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.menu_ads_option) {
+            Intent intent = new Intent(SnowForecastActivity.this, AdActivity.class);
             startActivity(intent);
         }
         return true;

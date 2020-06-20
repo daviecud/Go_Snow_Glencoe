@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
     <TextView
@@ -183,10 +183,24 @@
             />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            >
+
+        <com.google.android.gms.ads.AdView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
+
+        </com.google.android.gms.ads.AdView>
+
+        </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

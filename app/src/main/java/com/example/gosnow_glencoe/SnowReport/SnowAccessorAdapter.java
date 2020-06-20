@@ -47,12 +47,11 @@ public class SnowAccessorAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        //get todays date to set tab title
+        //get todays date too set tab title
         String currentDate = DateFormat.getDateInstance().format(new Date());
-        //get tomorrows date to set to tab
+        //get tomorrows date too set to tab
         String sourceDate = currentDate;
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         Calendar calendarDate = Calendar.getInstance();
         try {
             calendarDate.setTime(dateFormat.parse(sourceDate));
@@ -62,20 +61,7 @@ public class SnowAccessorAdapter extends FragmentPagerAdapter {
         calendarDate.add(Calendar.DATE, 1);
         sourceDate = dateFormat.format(calendarDate.getTime());
 
-//        Date tomorrowDate = null;
-//        try {
-//            tomorrowDate = dateFormat.parse(sourceDate);
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        tomorrowDate = DateUtils.addDays(tomorrowDate, 1)
-//        calendarDate.setTime(new Date());
-//        calendarDate.add(Calendar.DAY_OF_MONTH, 1);
-//        String tomorrowsDate = calendarDate.getTime().toString();
-
-        SimpleDateFormat currentDateFormat = new SimpleDateFormat("MMM dd, yyyy");
-
+        //
         switch (position)
         {
             case 0:

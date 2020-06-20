@@ -1,415 +1,665 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_gradient"
     tools:context=".SnowReport.TomorrowsFragment"
-    android:orientation="vertical"
-    >
-
-    <TextView
-        android:id="@+id/resort_condition_json"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="resort condition json"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:id="@+id/runs_percentage_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="runs open json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:id="@+id/runs_percentage_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="runs open"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/new_snow_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="new snow"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/new_snow_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="new snow json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:id="@+id/freeze_lvl_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="freeze lvl json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:id="@+id/freeze_lvl_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="freeze level"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/last_snow_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="last snow"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/last_snow_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="last snow json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:id="@+id/visibility_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="visibility json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:id="@+id/visibility_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="visibility"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/snow_falling_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="snow falling"
-            android:layout_marginTop="45dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/snow_falling_json"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:text="snow falling json"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
-
-
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/access_heading"
-            android:layout_width="wrap_content"
+            android:id="@+id/resort_condition_json"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Access @1200ft/366m"
+            android:text="resort condition json"
+            android:textSize="20sp"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            />
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             >
 
             <TextView
-                android:id="@+id/access_current_weather_json"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="current weather"
+                android:id="@+id/runs_percentage_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="runs open json"
+                android:textSize="25sp"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 />
 
             <TextView
-                android:id="@+id/access_snow_depth_json"
+                android:id="@+id/runs_percentage_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="snow depth json"
-                android:textColor="@color/white"
+                android:text="runs open"
+                android:layout_marginTop="45dp"
                 android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/new_snow_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="new snow"
+                android:layout_marginTop="45dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/new_snow_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="new snow json"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/freeze_lvl_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="freeze lvl json"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/freeze_lvl_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="freeze level"
+                android:layout_marginTop="45dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/last_snow_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="last snow"
+                android:layout_marginTop="45dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/last_snow_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="last snow json"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             >
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="150dp"
+            <TextView
+                android:id="@+id/visibility_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="visibility json"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/blizzard"
-                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/visibility_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="visibility"
+                android:layout_marginTop="45dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/snow_falling_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="snow falling"
+                android:layout_marginTop="45dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/snow_falling_json"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:text="snow falling json"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/access_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Access @1200ft/366m"
+                android:textColor="@color/white"
+                android:textSize="30sp"
                 />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                >
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/access_tomorrow_weather_json"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="current weather"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    />
 
-                    <TextView
-                        android:id="@+id/access_fresh_snow_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Fresh Snow:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/temp_access_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="10dp"
-                        android:text="Temperature:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/access_tomorrow_snow_depth_json"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="snow depth json"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/fresh_snow_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="fresh snow json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
-                    <TextView
-                        android:id="@+id/temp_access_json"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="60dp"
-                        android:text="temp json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
-
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/access_tomorrow_weather_image_json"
+                    android:contentDescription="weather image"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/blizzard"
+                    android:paddingLeft="20dp"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/feels_like_access_heading"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/access_tomorrow_fresh_snow_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Fresh Snow:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/temp_access_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Temperature:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fresh_tomorrow_snow_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="fresh snow json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/temp_tomorrow_access_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="60dp"
+                            android:text="temp json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Feels Like:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/wnd_direction_access_heading"
+                        <TextView
+                            android:id="@+id/feels_like_access_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Feels Like:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/wnd_direction_access_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="Wind Direction:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tomorrow_feels_like_access_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="fresh snow json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tomorrow_wnd_direction_access_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="60dp"
+                            android:text="temp json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Wind Direction:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/wind_speed_access_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Wind Speed:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/wnd_gust_access_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="Wind Gust:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tomorrow_wnd_speed_access_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="wind speed json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tomorrow_wnd_gust_access_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:text="wnd gust json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/top_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Top @3600ft/1097m"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/top_current_weather_json"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="current weather"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    />
 
-                    <TextView
-                        android:id="@+id/feels_like_access_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="fresh snow json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
+                <TextView
+                    android:id="@+id/top_snow_depth_json"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="snow depth json"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/wnd_direction_access_json"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="60dp"
-                        android:text="temp json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/top_weather_image_json"
+                    android:contentDescription="top weather image"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/blizzard"
+                    android:paddingLeft="20dp"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/wind_speed_access_heading"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/top_fresh_snow_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Fresh Snow:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/temp_top_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Temperature:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/top_fresh_snow_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="fresh snow json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/top_temp_access_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="60dp"
+                            android:text="temp json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Wind Speed:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/wnd_gust_access_heading"
+                        <TextView
+                            android:id="@+id/feels_like_top_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Feels Like:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/wnd_direction_top_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="Wind Direction:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/feels_like_top_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="fresh snow json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/wnd_direction_top_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="60dp"
+                            android:text="temp json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Wind Gust:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/wind_speed_top_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Wind Speed:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/wnd_gust_top_heading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="Wind Gust:"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            />
 
-                    <TextView
-                        android:id="@+id/wnd_speed_access_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="wind speed json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/wnd_gust_access_json"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
-                        android:text="wnd gust json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/wnd_speed_top_json"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:text="wind speed json"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/wnd_gust_top_json"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:text="wnd gust json"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -419,244 +669,4 @@
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/top_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Top @3600ft/1097m"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id="@+id/top_current_weather_json"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="current weather"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                />
-
-            <TextView
-                android:id="@+id/top_snow_depth_json"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="snow depth json"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/blizzard"
-                android:paddingLeft="20dp"
-                />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/top_fresh_snow_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Fresh Snow:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/temp_top_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="10dp"
-                        android:text="Temperature:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/top_fresh_snow_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="fresh snow json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/top_temp_access_json"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="60dp"
-                        android:text="temp json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/feels_like_top_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Feels Like:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/wnd_direction_top_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Wind Direction:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/feels_like_top_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="fresh snow json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/wnd_direction_top_json"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="60dp"
-                        android:text="temp json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/wind_speed_top_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Wind Speed:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/wnd_gust_top_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Wind Gust:"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/wnd_speed_top_json"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:text="wind speed json"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/wnd_gust_top_json"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
-                        android:text="wnd gust json"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
