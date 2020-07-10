@@ -21,7 +21,10 @@
             android:id="@+id/snow_forecast_main_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:background="@color/white"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/fui_bgEmail"
+            >
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

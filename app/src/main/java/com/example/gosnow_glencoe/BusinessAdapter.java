@@ -35,7 +35,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.local_businesses_card , null);
         BusinessHolder holder = new BusinessHolder(view);
-        return new BusinessHolder(view);
+        return holder;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -76,6 +76,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             textViewBusSummary = itemView.findViewById(R.id.bus_summary);
 
             imageView = itemView.findViewById(R.id.bus_logo);
+
         }
     }
 }

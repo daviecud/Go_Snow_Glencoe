@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.gosnow_glencoe.HttpRequest;
 import com.example.gosnow_glencoe.R;
 
 import org.json.JSONArray;
@@ -22,7 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+//TODO create new adMob on google and implement into code with adID and ADUNIT
 public class TomorrowsFragment extends Fragment {
 
     private View tomorrowsFragmentView;
@@ -41,7 +42,7 @@ public class TomorrowsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         new GetWeatherJson().execute();
-
+        new GetSnowInfoTask().execute();
     }
 
     @Override
@@ -137,6 +138,53 @@ public class TomorrowsFragment extends Fragment {
                     tomorrows_top_wnd_dir.setText(top_windDirection);
                     tomorrows_top_wnd_spd.setText(top_windSpeed);
                     tomorrows_top_wnd_gst.setText(top_windGust);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class GetSnowInfoTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            return HttpRequest.executeGet("https://api.weatherunlocked.com/api/snowreport/1398?app_id=7d008ca4&app_key=f2fcfd587f47046f1f04f48cb68a00a3");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            TextView access_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.access_tomorrow_snow_depth_json);
+            TextView top_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrows_top_snow_depth_json);
+            TextView percentage_open = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_runs_percentage_json);
+            TextView new_snow = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_new_snow_json);
+            TextView last_snow = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_last_snow_json);
+            TextView resort_conditions = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_resort_condition_json);
+
+            //get json, get to string, set to txtfield
+            try {
+                JSONObject jObject = new JSONObject(s);
+
+                String top = jObject.getString("uppersnow_cm") + "cm";
+                String access = jObject.getString("lowersnow_cm") + "cm";
+                String conditions = jObject.getString("conditions");
+                String lstSnow = jObject.getString("lastsnow");
+                String newSnow = jObject.getString("newsnow_cm")  + "cm";
+                String pctOpen = jObject.getString("pctopen") + "%";
+
+                top_depth.setText(top);
+                access_depth.setText(access);
+                resort_conditions.setText(conditions);
+                last_snow.setText(lstSnow);
+                new_snow.setText(newSnow);
+                percentage_open.setText(pctOpen);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -54,17 +54,16 @@ public class GroupChatActivity extends AppCompatActivity {
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         groupNameReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(chosenGroupName);
 
-
-        InitializeFields();
-
-        GetUserInformation();
+        initializeFields();
+        getUserInformation();
 
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveMessageToDatabase();
+                saveMessageToDatabase();
                 userMessageInput.setText("");
 
+                //Set Scrollview to scroll to last message received in chat
                 scrollView.fullScroll(scrollView.FOCUS_DOWN);
             }
         });
@@ -80,7 +79,7 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 if (dataSnapshot.exists()) {
-                    DisplayGroupMessages(dataSnapshot);
+                    displayGroupMessages(dataSnapshot);
                 }
             }
 
@@ -88,7 +87,7 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 if (dataSnapshot.exists()) {
-                    DisplayGroupMessages(dataSnapshot);
+                    displayGroupMessages(dataSnapshot);
                 }
             }
 
@@ -109,8 +108,7 @@ public class GroupChatActivity extends AppCompatActivity {
         });
     }
 
-    private void InitializeFields() {
-
+    private void initializeFields() {
         toolbar = findViewById(R.id.chat_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(chosenGroupName);
@@ -121,8 +119,7 @@ public class GroupChatActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.chat_scroll_view);
     }
 
-    private void GetUserInformation() {
-
+    private void getUserInformation() {
         userRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,19 +134,16 @@ public class GroupChatActivity extends AppCompatActivity {
         });
     }
 
-
-    private void SaveMessageToDatabase() {
+    private void saveMessageToDatabase() {
         String messageKey = groupNameReference.push().getKey();
         String message = userMessageInput.getText().toString();
 
         if (TextUtils.isEmpty(message)) {
-
             Toast.makeText(GroupChatActivity.this, "Please enter a message....", Toast.LENGTH_SHORT).show();
-
         } else {
             //get and set current date
             Calendar calendarDate = Calendar.getInstance();
-            SimpleDateFormat currentDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+            SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd MMM, yyyy");
             currentDate = currentDateFormat.format(calendarDate.getTime());
 
             //get and set current time
@@ -169,13 +163,11 @@ public class GroupChatActivity extends AppCompatActivity {
             messageMap.put("time", currentTime);
 
             groupMessageKeyReference.updateChildren(messageMap);
-
-
         }
-
     }
 
-    private void DisplayGroupMessages(DataSnapshot dataSnapshot) {
+    private void displayGroupMessages(DataSnapshot dataSnapshot) {
+    //Iterator is part of Collection framework
 
     Iterator iterator = dataSnapshot.getChildren().iterator();
 
@@ -189,7 +181,5 @@ public class GroupChatActivity extends AppCompatActivity {
 
         scrollView.fullScroll(scrollView.FOCUS_DOWN);
     }
-
     }
-
 }

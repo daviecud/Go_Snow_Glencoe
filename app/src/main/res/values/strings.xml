@@ -25,6 +25,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_directions">Map</string>
+    <string name="resort_condition_json">resort condition json</string>
 
 
 </resources>

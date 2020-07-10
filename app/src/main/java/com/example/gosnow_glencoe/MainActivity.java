@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 JSONObject jObject = new JSONObject(s);
-
                 String upper = jObject.getString("uppersnow_cm") + "cm";
                 String lower = jObject.getString("lowersnow_cm") + "cm";
 
@@ -187,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonResponse = response.getJSONObject("currently");
                     String temp = String.valueOf(jsonResponse.getInt("temperature"));
 
-                    int temp_int = Integer.parseInt(temp); //sets the string value from api to a double variable
+                    int temp_int = Integer.parseInt(temp); //sets the string value from json to a double variable
                     int centi = (int) ((temp_int - 32) / 1.8000); //takes value from temp_int variable -32 then divides by 1.8000 to set centi with new value
                     centi = Math.round(centi); //Will take value from centi variable and use Math library round method to round to nearest whole number
                     int i = (int)centi; //will set i to an integer of value returned from centi variable
@@ -211,17 +210,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
     //Add toast/snackbar message as user clicks choice
+
+
     public void goToSnowReport(View view) {
         //Shows a message that the snow report was clicked
         displayToast(getString(R.string.snow_report_click));
-
+        //Explicit Intent
         Intent intent = new Intent(this, SnowForecastActivity.class);
         startActivity(intent);
     }
 
     public void goToSnowSports(View view) {
         displayToast(getString(R.string.snow_sports_clicked));
-
+        //Explicit Intent
         Intent intent = new Intent(this, SportActivity.class);
         startActivity(intent);
     }

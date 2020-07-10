@@ -73,6 +73,7 @@ public class ChatsActivity extends AppCompatActivity {
         Toast.makeText(ChatsActivity.this, messageReceiverName, Toast.LENGTH_SHORT).show();
 
         initializeFields();
+        displayLastSeen();
 
         userName.setText(messageReceiverName);
         Picasso.get().load(getMessageReceiverImage).placeholder(R.drawable.profile).into(profileImage);
@@ -91,6 +92,7 @@ public class ChatsActivity extends AppCompatActivity {
         setSupportActionBar(chartToolBar);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
@@ -110,34 +112,6 @@ public class ChatsActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         userMessagesList.setLayoutManager(linearLayoutManager);
         userMessagesList.setAdapter(messagesAdapter);
-    }
-
-    private void displayLastSeen() {
-        rootRef.child("Users").child(messageSenderID)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child("userStatus").hasChild("state")) {
-                            String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
-                            String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
-                            String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
-
-                            if (status.equals("online")) {
-                                userLastSeen.setText("online");
-                            }
-                            if (status.equals("offline")) {
-                                userLastSeen.setText("Last seen: " + date + " " + time);
-                            }
-                        } else {
-                            userLastSeen.setText("offline");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
     }
 
     @Override
@@ -177,7 +151,6 @@ public class ChatsActivity extends AppCompatActivity {
     }
 
     private void sendMessage() {
-
         String messageText = messageInputText.getText().toString();
         if (TextUtils.isEmpty(messageText)) {
             Toast.makeText(this, "please write a message..", Toast.LENGTH_SHORT).show();
@@ -189,8 +162,9 @@ public class ChatsActivity extends AppCompatActivity {
             DatabaseReference userKeyMessageID = rootRef.child("Messages").child(messageSenderID).child(messageReceiverID).push();
 
             String messagePushID = userKeyMessageID.getKey();
-
-            Map messageTextBody = new HashMap();
+            //TODO try app with new update code for Map below
+            //TRIED to change Map to Map with <String> parameter
+            Map<String, String> messageTextBody = new HashMap();
             messageTextBody.put("message", messageText);
             messageTextBody.put("type", "text");
             messageTextBody.put("from", messageSenderID);
@@ -207,11 +181,38 @@ public class ChatsActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(ChatsActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     }
+                    //Sets the users message input to an empty text field after message sent
                     messageInputText.setText("");
                 }
             });
         }
     }
 
+    private void displayLastSeen() {
+        rootRef.child("Users").child(messageSenderID)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("userStatus").hasChild("state")) {
+                            String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
+                            String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
+                            String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
 
+                            if (status.equals("online")) {
+                                userLastSeen.setText("online");
+                            }
+                            if (status.equals("offline")) {
+                                userLastSeen.setText("Last seen: " + date + " " + time);
+                            }
+                        } else {
+                            userLastSeen.setText("offline");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
 }

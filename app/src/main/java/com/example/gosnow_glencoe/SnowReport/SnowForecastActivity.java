@@ -18,7 +18,6 @@ import com.example.gosnow_glencoe.R;
 
 import com.example.gosnow_glencoe.ResortActivity;
 import com.example.gosnow_glencoe.SnowChat.SnowChatActivity;
-import com.example.gosnow_glencoe.SnowReportActivity;
 import com.example.gosnow_glencoe.SportActivity;
 import com.google.android.material.tabs.TabLayout;
 

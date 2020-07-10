@@ -1,5 +1,6 @@
 package com.example.gosnow_glencoe.SnowReport;
 
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gosnow_glencoe.HttpRequest;
@@ -18,6 +20,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,6 +33,7 @@ public class TodaysFragment extends Fragment {
     private View todaysFragmentView;
     private AdView adView;
     private AdRequest adRequest;
+    private ImageView imageView;
 
     public TodaysFragment() {
         // Required empty public constructor
@@ -97,6 +101,7 @@ public class TodaysFragment extends Fragment {
             TextView frz_lvl = (TextView) todaysFragmentView.findViewById(R.id.freeze_lvl_json);
             TextView visibility = (TextView) todaysFragmentView.findViewById(R.id.visibility_json);
             TextView snow_falling = (TextView) todaysFragmentView.findViewById(R.id.snow_falling_json);
+            TextView rain_falling = (TextView) todaysFragmentView.findViewById(R.id.rain_falling_json);
 
             TextView access_weather = (TextView) todaysFragmentView.findViewById(R.id.access_current_weather_json);
 
@@ -114,6 +119,7 @@ public class TodaysFragment extends Fragment {
             TextView top_wnd_dir = (TextView) todaysFragmentView.findViewById(R.id.wnd_direction_top_json);
             TextView top_wnd_spd = (TextView) todaysFragmentView.findViewById(R.id.wnd_speed_top_json);
             TextView top_wnd_gst = (TextView) todaysFragmentView.findViewById(R.id.wnd_gust_top_json);
+            ImageView top_wthr_img = (ImageView) todaysFragmentView.findViewById(R.id.top_weather_image_json);
 
             try {
                 JSONObject jsonObj = new JSONObject(jsonResult);
@@ -121,14 +127,17 @@ public class TodaysFragment extends Fragment {
                 JSONObject freeze = forecast.getJSONObject(0);
                 JSONObject vis = forecast.getJSONObject(0);
                 JSONObject snow_f = forecast.getJSONObject(0);
+                JSONObject rain_f = forecast.getJSONObject(0);
 
-                String frz = freeze.getString("frzglvl_ft") + "(ft)";
-                String vizi = vis.getString("vis_mi") + "(mile)";
-                String snowfalling = snow_f.getString("snow_mm") + "(mm)";
+                String frz = freeze.getString("frzglvl_ft") + "ft";
+                String vizi = vis.getString("vis_mi") + "mile";
+                String snowfalling = snow_f.getString("snow_mm") + "mm";
+                String rainfalling = rain_f.getString("rain_mm") + "mm";
 
                 frz_lvl.setText(frz);
                 visibility.setText(vizi);
                 snow_falling.setText(snowfalling);
+                rain_falling.setText(rainfalling);
 
                 if (forecast.length() > 0) {
                     for (int x = 0; x < forecast.length(); x++) {
@@ -139,6 +148,7 @@ public class TodaysFragment extends Fragment {
                         if (jsoObject.has("base")) {
                             JSONObject jsonBase = jsoObject.getJSONObject("base");
                             String weather = jsonBase.getString("wx_desc");
+
                             String frshSnow = jsonBase.getString("freshsnow_cm") + "cm";
                             String temperature = jsonBase.getString("temp_c") + "°C";
                             String feelLike = jsonBase.getString("feelslike_c") + "°C";
@@ -166,6 +176,13 @@ public class TodaysFragment extends Fragment {
                             String top_winDir = jsonUpper.getString("winddir_compass");
                             String top_winSpd = jsonUpper.getString("windspd_mph") + "mph";
                             String top_winGst = jsonUpper.getString("windgst_mph") + "mph";
+
+                            if (top_weath.contains("rain") || top_weath.contains("drizzle")) {
+
+                                top_wthr_img.setImageResource(R.drawable.hillwalking);
+                            } else {
+                                top_wthr_img.setImageResource(R.drawable.heavysnow);
+                            }
 
                             top_weather.setText(top_weath);
                             top_fresh.setText(top_frshSnow);

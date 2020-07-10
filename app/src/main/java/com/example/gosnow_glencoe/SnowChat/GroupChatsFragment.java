@@ -35,21 +35,16 @@ public class GroupChatsFragment extends Fragment {
     private ArrayList<String> list_of_groups = new ArrayList<>();
     private DatabaseReference rootRef;
 
-
     public GroupChatsFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         groupFragmentView = inflater.inflate(R.layout.fragment_group_chats, container, false);
 
         rootRef = FirebaseDatabase.getInstance().getReference().child("Groups");
-
 
         initializeFields();
         getAndDisplayGroups();
@@ -61,15 +56,13 @@ public class GroupChatsFragment extends Fragment {
                 String chosenGroupName = adapterView.getItemAtPosition(position).toString(); //this will get the chosen group name and store it in the declared String
 
                 Intent intent = new Intent(getContext(), GroupChatActivity.class);
-                intent.putExtra("groupName" , chosenGroupName); //this will pass chosen value to GroupChatActivity
+                intent.putExtra("groupName" , chosenGroupName); //this will pass chosen group chat value to GroupChatActivity
                 startActivity(intent);
 
             }
         });
-
         return groupFragmentView;
     }
-
 
     private void initializeFields() {
         list_view = groupFragmentView.findViewById(R.id.list_view);
@@ -77,6 +70,9 @@ public class GroupChatsFragment extends Fragment {
         list_view.setAdapter(arrayAdapter);
     }
 
+    //Method to display Group Chat options for user to select which group chat they would like to participate in
+    //Using rootRef declared above to access the Firebase database child and attaching a new ValueEventListener to List available groups for user to view
+    //onDataChange() will
     private void getAndDisplayGroups() {
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,7 +96,4 @@ public class GroupChatsFragment extends Fragment {
             }
         });
     }
-
-
-
 }

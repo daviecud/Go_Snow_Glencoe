@@ -31,8 +31,6 @@ public class BusinessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
 
-        infoList = new ArrayList<>();
-
         toolbar = findViewById(R.id.business_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Local Business");
@@ -42,62 +40,80 @@ public class BusinessActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        GetBusinessDetails();
         //Adding details to the ArrayList<> called infoList, it will create a new BusinessDetails entry
 
-        infoList.add(new BusinessDetails(
-                1,
-                "Glencoe Mountain Resort",
-                "Glencoe, PH49 4HZ",
-                "01855 851226",
-                "www.glencoemoutain.co.uk",
-                "Winter/Summer Sports, Accommodation",
-                R.drawable.glencoe
-        ));
-
-        infoList.add(new BusinessDetails(
-                2,
-                "The Green Welly Stop",
-                "Tyndrum, FK20 8RY",
-                "01838 400271",
-                "www.thegreenwellystop.co.uk",
-                "Gifts - Food & Drink - Petrol - OutdoorWear",
-                R.drawable.greenwelly
-        ));
-
-        infoList.add(new BusinessDetails(
-                3,
-                "Kingshouse Hotel",
-                "Glencoe, PH49 4HY",
-                "01855 851 259",
-                "www.kingshousehotel.co.uk",
-                "Stay - Eat - Drink - Gather",
-                R.drawable.kingshouselogo
-        ));
-
-        infoList.add(new BusinessDetails(
-                4,
-                "Ice Factor",
-                "Leven Road, Kinlochleven, PH50 4SF",
-                "01855 831 100",
-                "www.ice-factor.co.uk",
-                "Rock/Ice Climbing - Indoor Activities - Food & Drink",
-                R.drawable.ice_factor_logo
-        ));
-
-        infoList.add(new BusinessDetails(
-                5,
-                "The Loch Leven Hotel",
-                "Old Ferry Road, Ballachulish, PH33 6SA",
-                "01855 821 236",
-                "www.lochlevenhotel.co.uk",
-                "Accommodation - Loch View Restaurant - Shop",
-                R.drawable.lochleven_logo
-        ));
-
-        Collections.shuffle(infoList);
-        adapter = new BusinessAdapter(this, infoList);
-        recyclerView.setAdapter(adapter);
     }
+
+    /*
+    * Create ArrayList
+    * Add entries using BusinessDetails class
+    * Create new BusinessAdapter
+    * Each time BusinessActivity opens shuffle entries
+    * Set BusinessAdapter to Recyclerview
+    * */
+    public void GetBusinessDetails() {
+
+        //Create ArrayList
+        infoList = new ArrayList<>();
+        //Add entries to ArrayList using BusinessDetails class
+            infoList.add(new BusinessDetails(
+                    1,
+                    "Glencoe Mountain Resort",
+                    "Glencoe, PH49 4HZ",
+                    "01855 851226",
+                    "www.glencoemoutain.co.uk",
+                    "Winter/Summer Sports, Accommodation",
+                    R.drawable.glencoe
+            ));
+
+            infoList.add(new BusinessDetails(
+                    2,
+                    "The Green Welly Stop",
+                    "Tyndrum, FK20 8RY",
+                    "01838 400271",
+                    "www.thegreenwellystop.co.uk",
+                    "Gifts - Food & Drink - Petrol - OutdoorWear",
+                    R.drawable.greenwelly
+            ));
+
+            infoList.add(new BusinessDetails(
+                    3,
+                    "Kingshouse Hotel",
+                    "Glencoe, PH49 4HY",
+                    "01855 851 259",
+                    "www.kingshousehotel.co.uk",
+                    "Stay - Eat - Drink - Gather",
+                    R.drawable.kingshouselogo
+            ));
+
+            infoList.add(new BusinessDetails(
+                    4,
+                    "Ice Factor",
+                    "Leven Road, Kinlochleven, PH50 4SF",
+                    "01855 831 100",
+                    "www.ice-factor.co.uk",
+                    "Rock/Ice Climbing - Indoor Activities - Food & Drink",
+                    R.drawable.ice_factor_logo
+            ));
+
+            infoList.add(new BusinessDetails(
+                    5,
+                    "The Loch Leven Hotel",
+                    "Old Ferry Road, Ballachulish, PH33 6SA",
+                    "01855 821 236",
+                    "www.lochlevenhotel.co.uk",
+                    "Accommodation - Loch View Restaurant - Shop",
+                    R.drawable.lochleven_logo
+            ));
+
+            //Shuffle entries in random order each time BusinessActivity starts
+            Collections.shuffle(infoList);
+            //Create new BusinessAdapter
+            adapter = new BusinessAdapter(this, infoList);
+            //set Adapter to recyclerview
+            recyclerView.setAdapter(adapter);
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,7 +146,6 @@ public class BusinessActivity extends AppCompatActivity {
             Intent intent = new Intent(BusinessActivity.this, ResortActivity.class);
             startActivity(intent);
         }
-
 
         if (item.getItemId() == R.id.menu_directions_option) {
             Intent intent = new Intent(BusinessActivity.this, DirectionsActivity.class);

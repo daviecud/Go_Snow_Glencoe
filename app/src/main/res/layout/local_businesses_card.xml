@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -30,7 +29,6 @@
                 android:padding="4dp"
                 android:contentDescription="Business Logo"
                 />
-
 
             <TextView
                 android:id="@+id/bus_name"
@@ -61,10 +59,11 @@
                 android:layout_below="@id/bus_address"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/bus_logo"
+                android:autoLink="phone"
                 android:text="07666666666"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorPrimary" />
-
+            
             <TextView
                 android:id="@+id/bus_web"
                 android:layout_width="match_parent"
@@ -72,6 +71,7 @@
                 android:layout_below="@id/bus_tel"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/bus_logo"
+                android:autoLink="web"
                 android:text="www.agmaerials.co.uk"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorPrimary" />
