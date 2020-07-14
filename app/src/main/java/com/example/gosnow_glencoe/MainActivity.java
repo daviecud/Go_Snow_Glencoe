@@ -3,6 +3,7 @@ package com.example.gosnow_glencoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -251,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToDirections(View view) {
         displayToast(getString(R.string.directions_clicked));
 
-        Intent intent = new Intent(this, DirectionsActivity.class);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:56.6325,-4.8279"));
         startActivity(intent);
     }
 }
