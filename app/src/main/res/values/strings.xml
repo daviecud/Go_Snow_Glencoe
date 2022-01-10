@@ -27,6 +27,38 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_directions">Map</string>
     <string name="resort_condition_json">resort condition json</string>
+    <string name="go_snow_glencoe_heading">Go Snow Glencoe</string>
+    <string name="base_snow_depth_headin_ma">Base Snow Depth:</string>
+    <string name="top_snow_depth_heading_ma">Top Snow Depth:</string>
+    <string name="snow">Snow</string>
+    <string name="access_depth_json_ma">access Depth(cm)</string>
+    <string name="main_temp_json_ma">-1°C</string>
+    <string name="top_depth_json_ma">top Depth(cm)</string>
+    <string name="report">Report</string>
+    <string name="sports">Sports</string>
+    <string name="chat">Chat</string>
+    <string name="resort">Resort</string>
+    <string name="info">Info.</string>
+    <string name="local">Local</string>
+    <string name="business">Business</string>
+    <string name="google_maps">Google Maps</string>
+    <string name="directions">Directions</string>
+    <string name="snowfall_cloud">snowfall_cloud</string>
+    <string name="sport_image">sport_image</string>
+    <string name="chat_image">chat_image</string>
+    <string name="resort_image">resort_image</string>
+    <string name="local_business_image">local_business_image</string>
+    <string name="google_maps_image">google_maps_image</string>
+    <string name="top_mount_image_sp">top_mount_image</string>
+    <string name="skiing_snowboarding_heading_sp">Skiing/Snowboarding</string>
+    <string name="sledging_heading_sp">Sledging</string>
+    <string name="hillwalking_heading_sp">Hillwalking</string>
+    <string name="lessons_heading_sp">Lesson\'s</string>
+    <string name="group_lessons_heading_sp">Group Lessons</string>
+    <string name="lesson_table_column_heading_sp">Lesson</string>
+    <string name="duration_table_column_heading_sp">Duration</string>
+    <string name="adult_table_column_heading_sp">Adult</string>
+    <string name="junior_table_column_heading_sp">Junior</string>
 
 
 </resources>

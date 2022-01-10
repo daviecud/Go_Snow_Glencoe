@@ -47,7 +47,7 @@
                 android:layout_height="41dp"
                 android:clickable="true"
                 android:src="@drawable/skier"
-                android:tint="#FFFFFF" />
+                app:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:clickable="true"
 
                 android:src="@drawable/snowboard"
-                android:tint="#FFFFFF" />
+                app:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/sledgeimage"
-                android:tint="#FFFFFF" />
+                app:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:srcCompat="@drawable/hillwalking"
-                android:tint="#FFFFFF" />
+                app:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:src="@drawable/teacher"
-                android:tint="#FFFFFF" />
+                app:tint="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -271,8 +271,8 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
                         android:layout_marginRight="5dp"
-                        android:tint="#64000000"
-                        android:src="@drawable/snowboarder"/>
+                        android:src="@drawable/snowboarder"
+                        app:tint="#64000000" />
 
                     <LinearLayout
                         android:layout_width="300dp"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/signIn_bottom_nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_black_24dp" />
+
+    <item
+        android:id="@+id/signIn_bottom_nav_snowreport"
+        android:title="Snow Report"
+        android:icon="@mipmap/snowflake" />
+
+    <item
+        android:id="@+id/signIn_bottom_nav_sports"
+        android:title="Glencoe Resort"
+        android:icon="@drawable/snowboard" />
+
+    <item
+        android:id="@+id/signIn_bottom_nav_resort"
+        android:title="Snow Chat"
+        android:icon="@drawable/ic_baseline_info_24" />
+
+    <item
+        android:id="@+id/signIn_bottom_nav_business"
+        android:title="Local Business"
+        android:icon="@drawable/food_drink" />
+
+
+</menu>

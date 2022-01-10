@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class SnowReportActivity extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class SnowReportActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.snow_report_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Snow Report");
 
         snowfallView = findViewById(R.id.snowfallView);

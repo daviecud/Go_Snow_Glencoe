@@ -1,6 +1,5 @@
 package com.example.gosnow_glencoe.SnowReport;
 
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -12,28 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.gosnow_glencoe.HttpRequest;
 import com.example.gosnow_glencoe.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
+import java.util.Objects;
+
 
 public class TodaysFragment extends Fragment {
 
     private View todaysFragmentView;
-    private AdView adView;
-    private AdRequest adRequest;
-    private ImageView imageView;
+    private AdView adView, adview1;
+    private AdRequest adRequest, adRequest2;
+
 
     public TodaysFragment() {
         // Required empty public constructor
@@ -47,7 +41,7 @@ public class TodaysFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         initializeFields();
         new GetWeatherJson().execute();
         new GetSnowInfoTask().execute();
@@ -62,6 +56,10 @@ public class TodaysFragment extends Fragment {
         adView = (AdView) todaysFragmentView.findViewById(R.id.adview);
         adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        adview1 = (AdView) todaysFragmentView.findViewById(R.id.ad_below_top_report);
+        adRequest2 = new AdRequest.Builder().build();
+        adview1.loadAd(adRequest2);
 
         return todaysFragmentView;
     }
@@ -87,7 +85,7 @@ public class TodaysFragment extends Fragment {
     * Json results will be set to the appropriate TextView field
     * catch block will handle exceptions if they occur.
     * */
-    class GetWeatherJson extends AsyncTask<String, Void, String> {
+    private class GetWeatherJson extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -102,16 +100,16 @@ public class TodaysFragment extends Fragment {
             TextView visibility = (TextView) todaysFragmentView.findViewById(R.id.visibility_json);
             TextView snow_falling = (TextView) todaysFragmentView.findViewById(R.id.snow_falling_json);
             TextView rain_falling = (TextView) todaysFragmentView.findViewById(R.id.rain_falling_json);
-
+            //Declare Access weather TextView
             TextView access_weather = (TextView) todaysFragmentView.findViewById(R.id.access_current_weather_json);
-
             TextView access_fresh= (TextView) todaysFragmentView.findViewById(R.id.fresh_snow_json);
             TextView access_temp = (TextView) todaysFragmentView.findViewById(R.id.temp_access_json);
             TextView access_feels_like = (TextView) todaysFragmentView.findViewById(R.id.feels_like_access_json);
             TextView access_wnd_dir = (TextView) todaysFragmentView.findViewById(R.id.wnd_direction_access_json);
             TextView access_wnd_spd = (TextView) todaysFragmentView.findViewById(R.id.wnd_speed_access_json);
             TextView access_wnd_gst = (TextView) todaysFragmentView.findViewById(R.id.wnd_gust_access_json);
-
+            ImageView access_wthr_img = (ImageView) todaysFragmentView.findViewById(R.id.access_weather_image_json);
+            //Declare top weather TextView
             TextView top_weather = (TextView) todaysFragmentView.findViewById(R.id.top_current_weather_json);
             TextView top_fresh = (TextView) todaysFragmentView.findViewById(R.id.top_fresh_snow_json);
             TextView top_temp = (TextView) todaysFragmentView.findViewById(R.id.top_temp_access_json);
@@ -156,6 +154,23 @@ public class TodaysFragment extends Fragment {
                             String wSpd = jsonBase.getString("windspd_mph") + "mph";
                             String wGst = jsonBase.getString("windgst_mph") + "mph";
 
+                            if (weather.contains("rain") || weather.contains("drizzle")) {
+                                access_wthr_img.setImageResource(R.drawable.rain);
+                            } else if (weather.contains("Clear") || weather.contains("sunny")) {
+                                access_wthr_img.setImageResource(R.drawable.sunny);
+                            } else if (weather.contains("thunder")) {
+                                access_wthr_img.setImageResource(R.drawable.thunder);
+                            } else if (weather.contains("Mist")) {
+                                access_wthr_img.setImageResource(R.drawable.mist);
+                            } else if (weather.contains("Overcast")) {
+                                access_wthr_img.setImageResource(R.drawable.overcast);
+                            } else if (weather.contains("snow") || weather.contains(("Snow"))) {
+                                access_wthr_img.setImageResource(R.drawable.blizzard);
+                            }
+                            else {
+                                access_wthr_img.setImageResource(R.drawable.feels_like);
+                            }
+
                             access_weather.setText(weather);
                             access_fresh.setText(frshSnow);
                             access_temp.setText(temperature);
@@ -177,11 +192,22 @@ public class TodaysFragment extends Fragment {
                             String top_winSpd = jsonUpper.getString("windspd_mph") + "mph";
                             String top_winGst = jsonUpper.getString("windgst_mph") + "mph";
 
+                            //if else statement that checks if weather description contains a certain weather condition
+                            //if condition is true then sets specific image to weather image in top mountain weather section
                             if (top_weath.contains("rain") || top_weath.contains("drizzle")) {
-
-                                top_wthr_img.setImageResource(R.drawable.hillwalking);
+                                top_wthr_img.setImageResource(R.drawable.rain);
+                            } else if (top_weath.contains("Clear") || top_weath.contains("sunny")) {
+                                top_wthr_img.setImageResource(R.drawable.sunny);
+                            } else if (top_weath.contains("thunder")) {
+                                top_wthr_img.setImageResource(R.drawable.thunder);
+                            } else if (top_weath.contains("Mist")) {
+                                top_wthr_img.setImageResource(R.drawable.mist);
+                            } else if (top_weath.contains("Overcast")) {
+                                top_wthr_img.setImageResource(R.drawable.overcast);
+                            } else if (top_weath.contains("snow") || top_weath.contains(("Snow"))) {
+                                top_wthr_img.setImageResource(R.drawable.blizzard);
                             } else {
-                                top_wthr_img.setImageResource(R.drawable.heavysnow);
+                                top_wthr_img.setImageResource(R.drawable.feels_like);
                             }
 
                             top_weather.setText(top_weath);
@@ -200,7 +226,7 @@ public class TodaysFragment extends Fragment {
         }
     }
 
-    class GetSnowInfoTask extends AsyncTask<String, Void, String> {
+    private class GetSnowInfoTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -216,7 +242,7 @@ public class TodaysFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            TextView access_depth = (TextView) todaysFragmentView.findViewById(R.id.access_snow_depth_json);
+            TextView access_depth = todaysFragmentView.findViewById(R.id.access_snow_depth_json);
             TextView top_depth = (TextView) todaysFragmentView.findViewById(R.id.top_snow_depth_json);
             TextView percentage_open = (TextView) todaysFragmentView.findViewById(R.id.runs_percentage_json);
             TextView new_snow = (TextView) todaysFragmentView.findViewById(R.id.new_snow_json);

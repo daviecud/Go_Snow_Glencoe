@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gosnow_glencoe.HttpRequest;
 import com.example.gosnow_glencoe.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,24 +67,26 @@ public class TomorrowsFragment extends Fragment {
         protected void onPostExecute(String jsonResult) {
             super.onPostExecute(jsonResult);
 
-            TextView frz_lvl = tomorrowsFragmentView.findViewById(R.id.freeze_lvl_json);
-            TextView visibility = (TextView) tomorrowsFragmentView.findViewById(R.id.visibility_json);
-            TextView snow_falling = (TextView) tomorrowsFragmentView.findViewById(R.id.snow_falling_json);
-            TextView tomorrows_access_weather = (TextView) tomorrowsFragmentView.findViewById(R.id.access_tomorrow_weather_json);
-            TextView tomorrows_access_fresh = (TextView) tomorrowsFragmentView.findViewById(R.id.fresh_tomorrow_snow_json);
-            TextView tomorrows_access_temp = (TextView) tomorrowsFragmentView.findViewById(R.id.temp_tomorrow_access_json);
+            TextView frz_lvl = tomorrowsFragmentView.findViewById(R.id.tomorrow_freeze_lvl_json);
+            TextView visibility = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_visibility_json);
+            TextView snow_falling = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_snow_falling_json);
+            TextView rain_falling = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_rain_falling_json);
+            TextView tomorrows_access_weather = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_access_current_weather_json);
+            TextView tomorrows_access_fresh = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_fresh_snow_json);
+            TextView tomorrows_access_temp = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_temp_access_json);
             TextView tomorrows_access_feels_like = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_feels_like_access_json);
             TextView tomorrows_access_wnd_dir = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_direction_access_json);
             TextView tomorrows_access_wnd_spd = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_speed_access_json);
             TextView tomorrows_access_wnd_gst = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_gust_access_json);
-
-            TextView tomorrows_top_weather = (TextView) tomorrowsFragmentView.findViewById(R.id.top_current_weather_json);
-            TextView tomorrows_top_freshSnow = (TextView) tomorrowsFragmentView.findViewById(R.id.top_fresh_snow_json);
-            TextView tomorrows_top_temp = (TextView) tomorrowsFragmentView.findViewById(R.id.top_temp_access_json);
-            TextView tomorrows_top_feels_like = (TextView) tomorrowsFragmentView.findViewById(R.id.feels_like_top_json);
-            TextView tomorrows_top_wnd_dir = (TextView) tomorrowsFragmentView.findViewById(R.id.wnd_direction_top_json);
-            TextView tomorrows_top_wnd_spd = (TextView) tomorrowsFragmentView.findViewById(R.id.wnd_speed_top_json);
-            TextView tomorrows_top_wnd_gst = (TextView) tomorrowsFragmentView.findViewById(R.id.wnd_gust_top_json);
+            ImageView tomorrows_access_weather_img = (ImageView) tomorrowsFragmentView.findViewById(R.id.tomorrow_access_weather_image_json);
+            TextView tomorrows_top_weather = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_top_current_weather_json);
+            TextView tomorrows_top_freshSnow = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_top_fresh_snow_json);
+            TextView tomorrows_top_temp = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_top_temp_access_json);
+            TextView tomorrows_top_feels_like = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_feels_like_top_json);
+            TextView tomorrows_top_wnd_dir = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_direction_top_json);
+            TextView tomorrows_top_wnd_spd = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_speed_top_json);
+            TextView tomorrows_top_wnd_gst = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_wnd_gust_top_json);
+            ImageView tomorrows_top_weather_img = (ImageView) tomorrowsFragmentView.findViewById(R.id.tomorrow_top_weather_image_json);
 
             try {
                 JSONObject jsonObj = new JSONObject(jsonResult);
@@ -92,14 +94,17 @@ public class TomorrowsFragment extends Fragment {
                 JSONObject freeze = forecast.getJSONObject(10);
                 JSONObject vis = forecast.getJSONObject(10);
                 JSONObject snow_f = forecast.getJSONObject(10);
+                JSONObject rain_f = forecast.getJSONObject(10);
 
-                String frz = freeze.getString("frzglvl_ft") + "(ft)";
-                String vizi = vis.getString("vis_mi") + "(mile)";
-                String snowfalling = snow_f.getString("snow_mm") + "(mm)";
+                String frz = freeze.getString("frzglvl_ft") + "ft";
+                String vizi = vis.getString("vis_mi") + "mile";
+                String snowfalling = snow_f.getString("snow_mm") + "mm";
+                String rainfalling = rain_f.getString("rain_mm") + "mm";
 
                 frz_lvl.setText(frz);
                 visibility.setText(vizi);
                 snow_falling.setText(snowfalling);
+                rain_falling.setText(rainfalling);
 
                 JSONObject baseJSON = forecast.getJSONObject(10);
                 JSONObject accessJSON = baseJSON.getJSONObject("base");
@@ -120,6 +125,23 @@ public class TomorrowsFragment extends Fragment {
                     tomorrows_access_wnd_spd.setText(wSpd);
                     tomorrows_access_wnd_gst.setText(wGst);
 
+                if (weather.contains("rain") || weather.contains("drizzle")) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.rain);
+                } else if (weather.contains("Clear") || weather.contains("sunny")) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.sunny);
+                } else if (weather.contains("thunder")) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.thunder);
+                } else if (weather.contains("Mist")) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.mist);
+                } else if (weather.contains("Overcast") || weather.contains(("Cloudy"))) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.overcast);
+                } else if (weather.contains("snow") || weather.contains(("Snow"))) {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.blizzard);
+                }
+                else {
+                    tomorrows_access_weather_img.setImageResource(R.drawable.feels_like);
+                }
+
                     JSONObject topJSON = forecast.getJSONObject(10);
                     JSONObject topMountJSON = topJSON.getJSONObject("upper");
 
@@ -130,6 +152,23 @@ public class TomorrowsFragment extends Fragment {
                     String top_windDirection = topMountJSON.getString("winddir_compass");
                     String top_windSpeed = topMountJSON.getString("windspd_mph") + "mph";
                     String top_windGust = topMountJSON.getString("windgst_mph") + "mph";
+
+                if (top_weather.contains("rain") || top_weather.contains("drizzle")) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.rain);
+                } else if (top_weather.contains("Clear") || top_weather.contains("sunny")) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.sunny);
+                } else if (top_weather.contains("thunder")) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.thunder);
+                } else if (top_weather.contains("Mist")) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.mist);
+                } else if (top_weather.contains("Overcast")) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.overcast);
+                } else if (top_weather.contains("snow") || top_weather.contains(("Snow"))) {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.blizzard);
+                }
+                else {
+                    tomorrows_top_weather_img.setImageResource(R.drawable.feels_like);
+                }
 
                     tomorrows_top_weather.setText(top_weather);
                     tomorrows_top_freshSnow.setText(top_freshSnow);
@@ -161,8 +200,8 @@ public class TomorrowsFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            TextView access_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.access_tomorrow_snow_depth_json);
-            TextView top_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrows_top_snow_depth_json);
+            TextView access_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_access_snow_depth_json);
+            TextView top_depth = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_top_snow_depth_json);
             TextView percentage_open = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_runs_percentage_json);
             TextView new_snow = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_new_snow_json);
             TextView last_snow = (TextView) tomorrowsFragmentView.findViewById(R.id.tomorrow_last_snow_json);

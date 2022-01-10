@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendsActivity extends AppCompatActivity {
@@ -37,9 +39,9 @@ public class FindFriendsActivity extends AppCompatActivity {
         friendsRecyclerView = findViewById(R.id.find_friends_recyclerview);
         friendsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        toolbar =  findViewById(R.id.find_friends_toolbar);
+        toolbar = findViewById(R.id.find_friends_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Find Contacts");
     }

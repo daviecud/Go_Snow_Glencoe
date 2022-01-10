@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sports_background"
+    tools:context=".ResortActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/chairlift_Img"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="ChairLift Image"
+                android:elevation="2dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/access_chair"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/resort_parag1"
+                android:layout_width="365dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Originally known as White Corries, Glencoe was the first commercial Scottish Ski Area with the construction of the first overhead ski lift on Meall A’Bhuiridh in 1956."
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/resort_parag2"
+                android:layout_width="365dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="casual"
+                android:text="With 8 lifts and 20 runs, Glencoe is by no means the largest ski centre in Scotland, but it’s still a firm favourite with many Scottish skiers and boarders thanks to its unique and exhilarating terrain, and a snow holding record second to none."
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resort_parag1" />
+
+            <TextView
+                android:id="@+id/resort_para3"
+                android:layout_width="365dp"
+                android:layout_height="146dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="casual"
+                android:text="Onsite there are 10 microlodges, 4 microlodge plus, 6 electric hook-up points, 20 camping plots, showers, drying rooms and an onsite café with a fully licensed bar. With stunning views towards the Buchaille Etive Mor and Rannoch Moor you are guaranteed a spectacular view to wake up to."
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resort_parag2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="169dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="240dp"
+                android:paddingTop="10dp"
+                android:fontFamily="casual"
+                android:text="Glencoe Resort"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="#7E0B0909"
+                android:elevation="6dp"
+                android:shadowDx="5.0"
+                android:shadowDy="1.0"
+                android:shadowColor="@color/browser_actions_bg_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="416dp"
+                android:layout_height="6dp"
+                android:layout_marginTop="0dp"
+                android:background="#BA534C4C"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chairlift_Img" />
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/ad_resort_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BA534C4C"
+                app:layout_constraintTop_toBottomOf="@+id/resort_para3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_centerHorizontal="true"
+                app:adSize="LARGE_BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="416dp"
+                android:layout_height="6dp"
+                android:layout_marginTop="100dp"
+                android:background="#BA534C4C"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ad_resort_bottom" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/resort_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?android:windowBackground"
+        app:menu="@menu/resort_bottom_nav_menu"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

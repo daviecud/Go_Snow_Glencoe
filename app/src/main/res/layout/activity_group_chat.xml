@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
     tools:context=".SnowChat.GroupChatActivity">
 
     <include
@@ -36,7 +37,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 

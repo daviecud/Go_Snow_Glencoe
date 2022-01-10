@@ -58,7 +58,9 @@ public class PrivateMessagesAdapter extends RecyclerView.Adapter<PrivateMessages
 
     @Override
     public void onBindViewHolder(@NonNull final PrivateMessageViewHolder holder, int position) {
+        //get user Id of message sender
         String messageSenderId = auth.getCurrentUser().getUid();
+        //retrieve the messages
         PrivateMessages messages = privateMessagesList.get(position);
 
         String fromUserId = messages.getFrom();
@@ -81,6 +83,8 @@ public class PrivateMessagesAdapter extends RecyclerView.Adapter<PrivateMessages
             }
         });
 
+        //set receiver and senders text view
+        //add messages to the view
         if (fromMessageType.equals("text")) {
             holder.receiverMessageText.setVisibility(View.INVISIBLE);
             holder.receiverProfileImage.setVisibility(View.INVISIBLE);

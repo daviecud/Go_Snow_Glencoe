@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class GroupChatActivity extends AppCompatActivity {
 
@@ -143,12 +144,12 @@ public class GroupChatActivity extends AppCompatActivity {
         } else {
             //get and set current date
             Calendar calendarDate = Calendar.getInstance();
-            SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd MMM, yyyy");
+            SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd MMM, yyyy", Locale.UK);
             currentDate = currentDateFormat.format(calendarDate.getTime());
 
             //get and set current time
             Calendar calendarTime = Calendar.getInstance();
-            SimpleDateFormat currentTimeFormat = new SimpleDateFormat("hh:mm a");
+            SimpleDateFormat currentTimeFormat = new SimpleDateFormat("hh:mm a", Locale.UK);
             currentTime = currentTimeFormat.format(calendarTime.getTime());
 
             HashMap<String, Object> groupKey = new HashMap<>();
@@ -177,9 +178,9 @@ public class GroupChatActivity extends AppCompatActivity {
         String groupChatName = (String) ((DataSnapshot)iterator.next()).getValue();
         String groupChatTime = (String) ((DataSnapshot)iterator.next()).getValue();
 
-        displayMessage.append(groupChatName + ":\n" + groupChatMessage + "\n" + groupChatTime + "     " + groupChatDate + "\n\n\n");
+        displayMessage.append(groupChatName + ":\n" + groupChatMessage + "\n" + groupChatTime + "     " + groupChatDate + "\n\n");
 
-        scrollView.fullScroll(scrollView.FOCUS_DOWN);
+        scrollView.fullScroll(View.FOCUS_DOWN);
     }
     }
 }

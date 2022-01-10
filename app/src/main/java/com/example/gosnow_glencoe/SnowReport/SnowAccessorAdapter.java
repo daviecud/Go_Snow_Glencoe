@@ -47,9 +47,9 @@ public class SnowAccessorAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        //get todays date too set tab title
+        //get todays date to set tab title
         String currentDate = DateFormat.getDateInstance().format(new Date());
-        //get tomorrows date too set to tab
+        //get tomorrows date to set to tab
         String sourceDate = currentDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         Calendar calendarDate = Calendar.getInstance();

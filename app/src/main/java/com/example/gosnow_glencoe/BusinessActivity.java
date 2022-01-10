@@ -8,13 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ScrollView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class BusinessActivity extends AppCompatActivity {
 
@@ -33,17 +40,19 @@ public class BusinessActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.business_toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle("Local Business");
 
+        //inflate
         recyclerView = findViewById(R.id.localBus_RecycleView);
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         GetBusinessDetails();
         //Adding details to the ArrayList<> called infoList, it will create a new BusinessDetails entry
 
     }
+
 
     /*
     * Create ArrayList
@@ -137,8 +146,8 @@ public class BusinessActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_snow_report_option) {
-            Intent intent = new Intent(BusinessActivity.this, SnowReportActivity.class);
+        if (item.getItemId() == R.id.menu_snow_sports_option) {
+            Intent intent = new Intent(BusinessActivity.this, SportActivity.class);
             startActivity(intent);
         }
 

@@ -7,4 +7,6 @@
     <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="semiTransparentColor">#20ffffff</color>
+    <color name="gradientStart">#CCDD31</color>
+    <color name="gradientEnd">#0958B8</color>
 </resources>

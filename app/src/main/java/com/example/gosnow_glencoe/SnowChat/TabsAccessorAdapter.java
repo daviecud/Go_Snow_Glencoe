@@ -11,44 +11,45 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TabsAccessorAdapter extends FragmentPagerAdapter {
 
     public TabsAccessorAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
+    //Switch case statement for launching new fragment on users choice
+    @NotNull
     @Override
-    public Fragment getItem(int i) {
+    public Fragment getItem(int position) {
 
-        switch (i)
+        switch (position)
         {
             case 0:
-                ChatsFragment chatsFragment = new ChatsFragment();
-                return chatsFragment;
+                return new ChatsFragment();
 
             case 1:
-                GroupChatsFragment groupChatsFragment = new GroupChatsFragment();
-                return groupChatsFragment;
+                return new GroupChatsFragment();
 
             case 2:
-                ContactsFragment contactsFragment = new ContactsFragment();
-                return contactsFragment;
+                return new ContactsFragment();
 
             case 3:
-                RequestFragment requestFragment = new RequestFragment();
-                return requestFragment;
+                return new RequestFragment();
 
                 default:
                     return null;
         }
-
     }
 
+    //Assign number of tabs
     @Override
     public int getCount() {
         return 4;
     }
 
+    //Set tab titles
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

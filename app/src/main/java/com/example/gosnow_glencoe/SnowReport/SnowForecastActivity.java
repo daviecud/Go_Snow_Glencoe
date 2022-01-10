@@ -21,6 +21,8 @@ import com.example.gosnow_glencoe.SnowChat.SnowChatActivity;
 import com.example.gosnow_glencoe.SportActivity;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Objects;
+
 public class SnowForecastActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -35,7 +37,8 @@ public class SnowForecastActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.snow_report_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Snow Report");
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Weather Conditions");
 
         viewPager = findViewById(R.id.snow_forecast_main_tabs_pager);
         snowAccessorAdapter = new SnowAccessorAdapter(getSupportFragmentManager());
@@ -48,7 +51,7 @@ public class SnowForecastActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
+        //inflate options overflow menu
         getMenuInflater().inflate(R.menu.snow_report_menu, menu);
         return true;
     }
@@ -57,40 +60,31 @@ public class SnowForecastActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.menu_home_option) {
+        if (item.getItemId() == R.id.bottom_nav_home) {
             Intent intent = new Intent(SnowForecastActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_snow_sports_option) {
+        if (item.getItemId() == R.id.bottom_nav_sport) {
             Intent intent = new Intent(SnowForecastActivity.this, SportActivity.class);
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_snow_chat_option) {
+        if (item.getItemId() == R.id.bottom_nav_snowchat) {
             Intent intent  =  new Intent(SnowForecastActivity.this, SnowChatActivity.class);
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_resort_option) {
-            Intent intent = new Intent(SnowForecastActivity.this, ResortActivity.class);
-            startActivity(intent);
-        }
-
-        if (item.getItemId() == R.id.menu_business_option) {
+        if (item.getItemId() == R.id.bottom_nav_business) {
             Intent intent = new Intent(SnowForecastActivity.this, BusinessActivity.class);
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_directions_option) {
-            Intent intent = new Intent(SnowForecastActivity.this, DirectionsActivity.class);
+        if (item.getItemId() == R.id.bottom_nav_resort) {
+            Intent intent = new Intent(SnowForecastActivity.this, ResortActivity.class);
             startActivity(intent);
         }
 
-        if (item.getItemId() == R.id.menu_ads_option) {
-            Intent intent = new Intent(SnowForecastActivity.this, AdActivity.class);
-            startActivity(intent);
-        }
         return true;
     }
 }

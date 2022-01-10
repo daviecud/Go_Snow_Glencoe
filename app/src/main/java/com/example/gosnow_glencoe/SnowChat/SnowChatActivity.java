@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class SnowChatActivity extends AppCompatActivity {
 
@@ -52,6 +53,8 @@ public class SnowChatActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.chat_toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Snow Chat");
 
         viewPager = findViewById(R.id.main_tabs_pager);

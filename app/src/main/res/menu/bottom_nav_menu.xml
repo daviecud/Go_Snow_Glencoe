@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/bottom_nav_home"
@@ -8,9 +7,9 @@
         android:icon="@drawable/ic_home_black_24dp" />
 
     <item
-        android:id="@+id/bottom_nav_sport"
-        android:title="Snow Sport"
-        android:icon="@drawable/snowboard" />
+        android:id="@+id/bottom_nav_snowreport"
+        android:title="Snow Report"
+        android:icon="@mipmap/snowflake" />
 
     <item
         android:id="@+id/bottom_nav_snowchat"
@@ -24,7 +23,6 @@
 
     <item
         android:id="@+id/bottom_nav_resort"
-        android:title="Glencoe Info"
+        android:title="Glencoe Resort"
         android:icon="@drawable/ic_baseline_info_24" />
-
 </menu>

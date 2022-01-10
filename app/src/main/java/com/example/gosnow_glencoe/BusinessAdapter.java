@@ -22,7 +22,7 @@ import java.util.List;
 public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.BusinessHolder> {
 
     private Context context;
-    private List<BusinessDetails> infoList; //this is assigning BusinessDetails into List called infoList
+    private List<BusinessDetails> infoList; //this is assigning BusinessDetails a into List called infoList
 
     public BusinessAdapter(Context context, List<BusinessDetails> infoList) {
         this.context = context;
@@ -34,8 +34,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
     public BusinessHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.local_businesses_card , null);
-        BusinessHolder holder = new BusinessHolder(view);
-        return holder;
+        return new BusinessHolder(view);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -48,7 +47,6 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         holder.textViewBusTel.setText(info.getBus_tel());
         holder.textViewBusWeb.setText(info.getBus_web());
         holder.textViewBusSummary.setText(info.getBus_summary());
-
         holder.imageView.setImageDrawable(context.getResources().getDrawable(info.getBus_image(), null));
     }
 
@@ -58,7 +56,6 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
     }
 
     class BusinessHolder extends RecyclerView.ViewHolder {
-
         ImageView imageView;
         TextView textViewBusName;
         TextView textViewBusAdd;
@@ -74,7 +71,6 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             textViewBusTel = itemView.findViewById(R.id.bus_tel);
             textViewBusWeb = itemView.findViewById(R.id.bus_web);
             textViewBusSummary = itemView.findViewById(R.id.bus_summary);
-
             imageView = itemView.findViewById(R.id.bus_logo);
 
         }

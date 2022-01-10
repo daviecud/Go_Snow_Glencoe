@@ -1,9 +1,11 @@
 package com.example.gosnow_glencoe.SnowChat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,22 +19,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gosnow_glencoe.BaseActivity;
+import com.example.gosnow_glencoe.BusinessActivity;
 import com.example.gosnow_glencoe.MainActivity;
 import com.example.gosnow_glencoe.R;
+import com.example.gosnow_glencoe.ResortActivity;
+import com.example.gosnow_glencoe.SnowReport.SnowForecastActivity;
+import com.example.gosnow_glencoe.SportActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+
 
 public class SignInActivity extends BaseActivity {
 
     private Toolbar toolbar;
+    private NavigationBarView navigationBarView;
     private EditText input_username, input_email, input_password;
     private TextView newAccountLink, forgotPasswordLink;
     private Button signInButton, phoneLoginButton;
@@ -56,9 +66,12 @@ public class SignInActivity extends BaseActivity {
 
         InitializeFields();
 
-        toolbar = findViewById(R.id.chat_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Sign In");
+//        toolbar = findViewById(R.id.chat_toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("Sign In");
+
+        navigationBarView = findViewById(R.id.signIn_bottom_nav);
+        navigationBarView.setOnItemSelectedListener(navBarViewMethod);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +91,7 @@ public class SignInActivity extends BaseActivity {
     private void InitializeFields() {
 
         signInButton = findViewById(R.id.sign_in_btn);
-        phoneLoginButton = findViewById(R.id.phone_login_btn);
-        forgotPasswordLink = findViewById(R.id.forget_password_link);
+        //forgotPasswordLink = findViewById(R.id.forget_password_link);
         newAccountLink = findViewById(R.id.new_acc_link);
         input_email = findViewById(R.id.email);
         input_password = findViewById(R.id.password);
@@ -122,7 +134,7 @@ public class SignInActivity extends BaseActivity {
                             if (task.isSuccessful()) {
 
                                 String currentUserID = auth.getCurrentUser().getUid();
-                                String phoneDeviceTokenID = FirebaseInstanceId.getInstance().getToken();
+                                String phoneDeviceTokenID = FirebaseMessaging.getInstance().getToken().toString();
 //                                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SignInActivity.this, new OnSuccessListener<InstanceIdResult>() {
 //                                    @Override
 //                                    public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -164,31 +176,59 @@ public class SignInActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.chat_sign_in_menu, menu);
+    private NavigationBarView.OnItemSelectedListener navBarViewMethod = new NavigationBarView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        return true;
-    }
+            if (item.getItemId() == R.id.signIn_bottom_nav_home) {
+                Intent home_intent = new Intent(SignInActivity.this, MainActivity.class);
+                startActivity(home_intent);
+            }
+            else if (item.getItemId() == R.id.signIn_bottom_nav_snowreport) {
+                Intent report_intent = new Intent(SignInActivity.this, SnowForecastActivity.class);
+                startActivity(report_intent);
+            }
+            else if (item.getItemId() == R.id.signIn_bottom_nav_sports) {
+                Intent sports_intent = new Intent(SignInActivity.this, SportActivity.class);
+                startActivity(sports_intent);
+            }
+            else if (item.getItemId() == R.id.signIn_bottom_nav_resort) {
+                Intent resort_intent = new Intent(SignInActivity.this, ResortActivity.class);
+                startActivity(resort_intent);
+            }
+            else if (item.getItemId() == R.id.signIn_bottom_nav_business) {
+                Intent business_intent = new Intent(SignInActivity.this, BusinessActivity.class);
+                startActivity(business_intent);
+            }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-        if (item.getItemId() == R.id.menu_home_option) {
-            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-            startActivity(intent);
+            return true;
         }
+    };
 
-        if (item.getItemId() == R.id.menu_signout_option) {
-            auth.signOut();
-            Intent intent = new Intent(SignInActivity.this, SignInActivity.class);
-            startActivity(intent);
-        }
-        return true;
-    }
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.chat_sign_in_menu, menu);
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        super.onOptionsItemSelected(item);
+//
+//        if (item.getItemId() == R.id.menu_home_option) {
+//            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+//            startActivity(intent);
+//        }
+//
+//        if (item.getItemId() == R.id.menu_signout_option) {
+//            auth.signOut();
+//            Intent intent = new Intent(SignInActivity.this, SignInActivity.class);
+//            startActivity(intent);
+//        }
+//        return true;
+//    }
 
 //    private void SignIn(String email, String password) {
 //        Log.d(TAG, "signIn:" + email);
@@ -273,5 +313,26 @@ public class SignInActivity extends BaseActivity {
             valid = false;
         }
         return valid;
+    }
+
+    public void readMeButton(View view) {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setTitle("Exit");
+        myAlert.setMessage("Are you sure?");
+        myAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        myAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        myAlert.show();
+
     }
 }

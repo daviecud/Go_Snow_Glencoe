@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,9 +55,9 @@ public class ContactsFragment extends Fragment {
         userContactsList = (RecyclerView) contactsView.findViewById(R.id.contacts_list);
         userContactsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-        auth =FirebaseAuth.getInstance();
-        currentUserID = auth.getCurrentUser().getUid();
+        //
+        auth = FirebaseAuth.getInstance();
+        currentUserID = Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
         contactsRef = FirebaseDatabase.getInstance().getReference().child("Contacts").child(currentUserID);
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -67,7 +69,8 @@ public class ContactsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Contacts>()
+        FirebaseRecyclerOptions options;
+        options = new FirebaseRecyclerOptions.Builder<Contacts>()
                 .setQuery(contactsRef, Contacts.class)
                 .build();
 
@@ -76,6 +79,7 @@ public class ContactsFragment extends Fragment {
             protected void onBindViewHolder(@NonNull final ContactsViewHolder holder, int position, @NonNull Contacts model) {
                 String userIDs = getRef(position).getKey();
 
+                assert userIDs != null;
                 usersRef.child(userIDs).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,7 +87,7 @@ public class ContactsFragment extends Fragment {
                             if (dataSnapshot.child("userStatus").hasChild("state")) {
                                 String status = dataSnapshot.child("userStatus").child("state").getValue().toString();
                                 String date = dataSnapshot.child("userStatus").child("date").getValue().toString();
-                                String time = dataSnapshot.child("userStatus").child("time").getValue().toString();
+                                String time = Objects.requireNonNull(dataSnapshot.child("userStatus").child("time").getValue()).toString();
 
                                 if (status.equals("online")) {
                                     holder.onlineIcon.setVisibility(View.VISIBLE);
